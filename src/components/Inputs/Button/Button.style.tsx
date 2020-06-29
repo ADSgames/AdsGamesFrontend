@@ -27,3 +27,12 @@ export const StyledButton = styled("button")`
     box-shadow: inset 0 1px 8px -1px ${props => props.theme.colors.boxShadow};
   }
 `;
+
+export const ButtonText = styled.p`
+  color: black;
+  text-align: center;
+  vertical-align: text-top;
+  font-size: 24px;
+  margin: 0;
+  padding: 3px;
+`;

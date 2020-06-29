@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledCard = styled.div`
-  background-color: #fff;
+  background-color: #E4E4E4;
   display: flex;
   overflow: hidden;
   border-bottom: 3px solid #bbb;
