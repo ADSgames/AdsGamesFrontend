@@ -14,6 +14,7 @@ import ContentHeader from "../components/ContentHeader";
 import IndexLayout from "../layouts";
 
 import * as ICONS from "../images/about_icons";
+import { SEO } from "../components/SEO";
 
 const staff = [
   {
@@ -34,36 +35,42 @@ const staff = [
   },
   {
     title: "Sully",
-    text: "Sullivan Stobo (Sully), is a game developer. He has a rockin' beard and may or may not wear a fedora.",
+    text:
+      "Sullivan Stobo (Sully), is a game developer. He has a rockin' beard and may or may not wear a fedora.",
     image: ICONS.sully,
     iconBgColor: "#267F00",
     tags: ["Code", "Art", "Music"],
   },
   {
     title: "Ryan",
-    text: "Ryan Van Stemp (Ryanthalais), he is 4 feet tall and lives in a cave.",
+    text:
+      "Ryan Van Stemp (Ryanthalais), he is 4 feet tall and lives in a cave.",
     image: ICONS.ryan,
     iconBgColor: "#002BF9",
     tags: ["3D Modeling"],
   },
   {
     title: "Miriam",
-    text: "Miriam Legemaate makes art and pixel art for our games. She is rumoured to turn into a cat on full moons, but we have no proof.",
+    text:
+      "Miriam Legemaate makes art and pixel art for our games. She is rumoured to turn into a cat on full moons, but we have no proof.",
     image: ICONS.miriam,
     iconBgColor: "#007F0E",
     tags: ["Art"],
   },
 ];
 
-const AboutPage = () => (
+const AboutPage: React.FC = () => (
   <IndexLayout>
+    <SEO title="About" />
     <Page>
       <Container>
         <ContentHeader text="About A.D.S. Games" />
         <Card>
           <LinkDescription>
-            A.D.S. (Allan and Daniel Software) Games was founded on the 21st of March 2011 by Allan Legemaate and Daniel Van Stemp. It
-            contains indie games programmed in C++, Java, Visual Basic, Scratch, HTML5, and Game Maker.
+            A.D.S. (Allan and Daniel Software) Games was founded on the 21st of
+            March 2011 by Allan Legemaate and Daniel Van Stemp. It contains
+            indie games programmed in C++, Java, Visual Basic, Scratch, HTML5,
+            and Game Maker.
           </LinkDescription>
         </Card>
       </Container>
@@ -73,18 +80,23 @@ const AboutPage = () => (
         </Card>
       </Container>
       {staff.map(({ title, text, image, tags, iconBgColor }) => (
-        <Container>
+        <Container key={title}>
           <Card title={title}>
             <LinkLayout>
               <LinkDescription>
                 <LinkTagLayout>
-                  {tags.map(tag => (
-                    <LinkTag>{tag}</LinkTag>
+                  {tags.map((tag) => (
+                    <LinkTag key={tag}>{tag}</LinkTag>
                   ))}
                 </LinkTagLayout>
                 {text}
               </LinkDescription>
-              <LinkIcon color={iconBgColor} title={title} image={image} width={160} />
+              <LinkIcon
+                color={iconBgColor}
+                title={title}
+                image={image}
+                width={160}
+              />
             </LinkLayout>
           </Card>
         </Container>

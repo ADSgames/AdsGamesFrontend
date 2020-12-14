@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Global, css } from "@emotion/core";
 import styled from "styled-components";
-import normalize from "../styles/normalize";
+
+import { Normalize } from "../styles/normalize";
 
 const StyledLayoutRoot = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const LayoutRoot: React.FC<{
   className?: string;
 }> = ({ children, className }) => (
   <>
-    <Global styles={() => css(normalize)} />
+    <Normalize />
     <StyledLayoutRoot className={className}>{children}</StyledLayoutRoot>
   </>
 );

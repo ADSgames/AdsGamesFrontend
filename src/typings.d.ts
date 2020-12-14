@@ -1,6 +1,4 @@
-interface CSSModule {
-  [className: string]: string;
-}
+type CSSModule = Record<string, string>;
 
 declare module "*.module.scss" {
   const cssModule: CSSModule;

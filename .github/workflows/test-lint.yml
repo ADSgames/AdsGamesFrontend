@@ -1,0 +1,40 @@
+name: Install-Lint-Test
+
+on: pull_request
+
+jobs:
+  install:
+    name: Install Lint Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: '([a-z])+\/([a-z])+'
+          allowed_prefixes: "feature,fix,hotfix,docs,release"
+          ignore: master,stage
+          min_length: 5
+          max_length: 30
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Restore node modules from cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Check types
+        run: yarn type-check
+
+      - name: Check formatting
+        run: yarn format-check

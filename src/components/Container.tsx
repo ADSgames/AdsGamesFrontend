@@ -8,11 +8,13 @@ const StyledContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: auto;
-  max-width: ${props => getEmSize(props.theme.widths.lg)}em;
+  max-width: ${(props): number => getEmSize(props.theme.widths.lg)}em;
 `;
 
 const Container: React.FC<{
   className?: string;
-}> = ({ children, className }) => <StyledContainer className={className}>{children}</StyledContainer>;
+}> = ({ children, className }) => (
+  <StyledContainer className={className}>{children}</StyledContainer>
+);
 
 export default Container;

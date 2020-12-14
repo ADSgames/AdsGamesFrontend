@@ -1,52 +1,109 @@
-import React from "react";
+/* eslint-disable max-lines-per-function */
+import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 
 import Page from "../components/Page";
 import Container from "../components/Container";
 import Card from "../components/Card";
-import { GameCard, GameGrid } from "../components/GameGrid";
+import Slider from "../components/Slider";
+import { GameGrid } from "../components/GameGrid";
 
 import IndexLayout from "../layouts";
+import { SEO } from "../components/SEO";
+import { GET_GAMES, GET_FAVORITES } from "../queries/games";
+import type { Game, FeaturedGame } from "../models";
+import { ContentLoader, LoadingSpinner } from "../components/Loaders";
 
-import gameImage from "../images/game.png";
+const mapFeaturedGames = (
+  featuredGames: FeaturedGame[],
+  games: Game[]
+): Game[] =>
+  featuredGames
+    .map(({ place, gameId }) => ({
+      place,
+      game: games.find((game) => game.id === gameId),
+    }))
+    .sort((gameA, gameB) => gameA.place - gameB.place)
+    .flatMap(({ game }) => (game ? [game] : []));
 
-const IndexPage = () => (
-  <IndexLayout>
-    <Page>
-      <Container>
-        <Card title="Featured Games">
-          <h1>Content here</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-            enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-            sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </Card>
+const IndexPage: React.FC = () => {
+  const [featuredGames, setFeaturedGames] = useState<Game[]>([]);
 
-        <Card title="Popular Games">
-          <GameGrid>
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-          </GameGrid>
-        </Card>
+  const { data: gameData, loading: gameLoading } = useQuery<{ games: Game[] }>(
+    GET_GAMES
+  );
+  const { data: featuredData, loading: featuredLoading } = useQuery<{
+    featuredGames: FeaturedGame[];
+  }>(GET_FAVORITES);
 
-        <Card title="Top Rated Games">
-          <GameGrid>
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-            <GameCard title="Game Name" image={gameImage} id="butts" />
-          </GameGrid>
-        </Card>
-      </Container>
-    </Page>
-  </IndexLayout>
-);
+  useEffect(() => {
+    if (!featuredData?.featuredGames || !gameData?.games) {
+      return;
+    }
+
+    setFeaturedGames(
+      mapFeaturedGames(featuredData.featuredGames, gameData.games)
+    );
+  }, [featuredData, gameData]);
+
+  return (
+    <IndexLayout>
+      <SEO title="Home" />
+      <Page>
+        <Container>
+          <Card title="Featured Games">
+            <ContentLoader
+              loader={<LoadingSpinner />}
+              loading={featuredLoading || gameLoading}
+            >
+              {gameData && featuredData && (
+                <Slider
+                  slides={featuredGames.map((game) => ({
+                    id: game.id,
+                    title: game.name,
+                    description: game.description,
+                    image: "",
+                  }))}
+                />
+              )}
+            </ContentLoader>
+          </Card>
+
+          <Card title="Popular Games">
+            <ContentLoader
+              loader={<LoadingSpinner />}
+              loading={featuredLoading || gameLoading}
+            >
+              {gameData && featuredData && (
+                <GameGrid
+                  games={mapFeaturedGames(
+                    featuredData.featuredGames,
+                    gameData.games
+                  )}
+                />
+              )}
+            </ContentLoader>
+          </Card>
+
+          <Card title="Top Rated Games">
+            <ContentLoader
+              loader={<LoadingSpinner />}
+              loading={featuredLoading || gameLoading}
+            >
+              {gameData && featuredData && (
+                <GameGrid
+                  games={mapFeaturedGames(
+                    featuredData.featuredGames,
+                    gameData.games
+                  )}
+                />
+              )}
+            </ContentLoader>
+          </Card>
+        </Container>
+      </Page>
+    </IndexLayout>
+  );
+};
 
 export default IndexPage;

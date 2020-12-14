@@ -9,6 +9,8 @@ const StyledLayoutMain = styled.main`
 
 const LayoutMain: React.FC<{
   className?: string;
-}> = ({ children, className }) => <StyledLayoutMain className={className}>{children}</StyledLayoutMain>;
+}> = ({ children, className }) => (
+  <StyledLayoutMain className={className}>{children}</StyledLayoutMain>
+);
 
 export default LayoutMain;

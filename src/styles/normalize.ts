@@ -1,9 +1,11 @@
+import { createGlobalStyle } from "styled-components";
+
 import { defaultTheme } from "./theme";
 import { getEmSize } from "./mixins";
 
 const { dimensions, fonts, colors, breakpoints } = defaultTheme;
 
-export default `
+export const Normalize = createGlobalStyle`
   html {
     box-sizing: border-box;
   }

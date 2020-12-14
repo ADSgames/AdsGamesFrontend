@@ -1,15 +1,16 @@
 import { transparentize } from "polished";
 import { Link } from "gatsby";
 import styled from "styled-components";
+import type { DefaultTheme } from "styled-components";
 
 import Container from "../Container";
 
 import logoShadow from "../../images/logo-shadow.svg";
 
-export const StyledHeader = styled.header`
-  height: ${props => props.theme.heights.header}px;
-  padding: 0 ${props => props.theme.dimensions.containerPadding}rem;
-  background-color: ${props => props.theme.colors.brand};
+export const StyledHeader = styled.header<{ theme: DefaultTheme }>`
+  height: ${(props): number => props.theme.heights.header}px;
+  padding: 0 ${(props): number => props.theme.dimensions.containerPadding}rem;
+  background-color: ${(props): string => props.theme.colors.brand};
   color: ${transparentize(0.5, "#FFFFFF")};
 `;
 

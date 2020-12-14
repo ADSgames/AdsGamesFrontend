@@ -7,13 +7,19 @@ import Card from "../components/Card";
 
 import IndexLayout from "../layouts";
 import LinkButton from "../components/Inputs/LinkButton";
-import { LinkIcon, LinkLayout, LinkDescription } from "../components/LinkLayout";
+import {
+  LinkIcon,
+  LinkLayout,
+  LinkDescription,
+} from "../components/LinkLayout";
 import * as LINK_ICONS from "../images/link_icons";
+import { SEO } from "../components/SEO";
 
 const links = [
   {
     title: "GitHub",
-    text: "Check out the source code to our games, this website, and other programs!",
+    text:
+      "Check out the source code to our games, this website, and other programs!",
     image: LINK_ICONS.github,
     iconBgColor: "#34495E",
     extLinks: [
@@ -59,7 +65,8 @@ const links = [
   },
   {
     title: "Filezilla",
-    text: "If you are looking for a free FTP client, filezilla is what you need. Filezilla is a powerful and easy to use ftp client.",
+    text:
+      "If you are looking for a free FTP client, filezilla is what you need. Filezilla is a powerful and easy to use ftp client.",
     image: LINK_ICONS.filezilla,
     iconBgColor: "#34495E",
     extLinks: [
@@ -123,22 +130,23 @@ const links = [
   },
 ];
 
-const LinksPage = () => (
+const LinksPage: React.FC = () => (
   <IndexLayout>
+    <SEO title="Links" />
     <Page>
       <Container>
         <ContentHeader text="Useful Links" />
       </Container>
 
       {links.map(({ title, text, extLinks, image, iconBgColor }) => (
-        <Container>
+        <Container key={title}>
           <Card title={title}>
             <LinkLayout>
               <LinkDescription>
                 {text}
                 <br />
-                {extLinks.map(link => (
-                  <LinkButton>
+                {extLinks.map((link) => (
+                  <LinkButton key={link.text}>
                     <a href={link.location}>{link.text}</a>
                   </LinkButton>
                 ))}

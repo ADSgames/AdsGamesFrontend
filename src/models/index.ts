@@ -1,35 +1,43 @@
 export type Maybe<T> = T | null;
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: string;
   String: string;
   Boolean: boolean;
   Int: number;
   Float: number;
-};
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: unknown;
+}
 
 export enum CacheControlScope {
   Public = "PUBLIC",
   Private = "PRIVATE",
 }
 
-export type Control = {
+export interface Control {
   __typename?: "Control";
   gameId: Scalars["ID"];
   controlId: Scalars["ID"];
   description: Scalars["String"];
   control: ControlType;
-};
+}
 
-export type ControlType = {
+export interface ControlType {
   __typename?: "ControlType";
   id: Scalars["ID"];
   name: Scalars["String"];
   shortName: Scalars["String"];
   image: Scalars["String"];
-};
+}
 
-export type Game = {
+export interface FeaturedGame {
+  __typename?: "FeaturedGame";
+  gameId: Scalars["String"];
+  place: Scalars["Int"];
+}
+
+export interface Game {
   __typename?: "Game";
   id: Scalars["ID"];
   shortName: Scalars["String"];
@@ -44,59 +52,60 @@ export type Game = {
   visible?: Maybe<Scalars["Boolean"]>;
   controller?: Maybe<Scalars["Int"]>;
   type: GameType;
-  controls: Array<Control>;
-};
+  controls: Control[];
+}
 
-export type GameType = {
+export interface GameType {
   __typename?: "GameType";
   id: Scalars["ID"];
   name: Scalars["String"];
   description: Scalars["String"];
-};
+}
 
-export type Query = {
+export interface Query {
   __typename?: "Query";
-  controlTypes: Array<ControlType>;
+  controlTypes: ControlType[];
   controlType?: Maybe<ControlType>;
-  controls: Array<Control>;
-  gameTypes: Array<GameType>;
+  controls: Control[];
+  gameTypes: GameType[];
   gameType?: Maybe<GameType>;
-  games: Array<Game>;
+  games: Game[];
   game?: Maybe<Game>;
-  roles: Array<Role>;
+  featuredGames: FeaturedGame[];
+  roles: Role[];
   role?: Maybe<Role>;
-  users: Array<User>;
+  users: User[];
   user?: Maybe<User>;
-};
+}
 
-export type QueryControlTypeArgs = {
+export interface QueryControlTypeArgs {
   id: Scalars["String"];
-};
+}
 
-export type QueryGameTypeArgs = {
+export interface QueryGameTypeArgs {
   id: Scalars["String"];
-};
+}
 
-export type QueryGameArgs = {
+export interface QueryGameArgs {
   id: Scalars["String"];
-};
+}
 
-export type QueryRoleArgs = {
+export interface QueryRoleArgs {
   id: Scalars["String"];
-};
+}
 
-export type QueryUserArgs = {
+export interface QueryUserArgs {
   id: Scalars["String"];
-};
+}
 
-export type Role = {
+export interface Role {
   __typename?: "Role";
   id: Scalars["ID"];
   name: Scalars["String"];
   shortName: Scalars["String"];
-};
+}
 
-export type User = {
+export interface User {
   __typename?: "User";
   id: Scalars["ID"];
   name: Scalars["String"];
@@ -107,4 +116,4 @@ export type User = {
   website?: Maybe<Scalars["String"]>;
   location?: Maybe<Scalars["String"]>;
   role: Role;
-};
+}

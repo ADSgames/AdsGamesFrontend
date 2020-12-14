@@ -1,11 +1,25 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { StyledGameGrid } from "./GameGrid.style";
+import GameCard from "./GameCard";
+
+import gameImage from "../../images/game.png";
+
+import type { Game } from "../../models";
 
 const GameGrid: React.FC<{
-  children: ReactNode;
-}> = ({ children }) => {
-  return <StyledGameGrid>{children}</StyledGameGrid>;
-};
+  games: Game[];
+}> = ({ games }) => (
+  <StyledGameGrid>
+    {games.map((game) => (
+      <GameCard
+        key={game.id}
+        title={game.name}
+        image={gameImage}
+        id={game.id}
+      />
+    ))}
+  </StyledGameGrid>
+);
 
 export default GameGrid;

@@ -1,5 +1,5 @@
 import * as React from "react";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { StaticQuery, graphql } from "gatsby";
 
 import "modern-normalize";
@@ -32,12 +32,15 @@ const IndexLayout: React.FC = ({ children }) => (
         }
       }
     `}
-    render={(data: StaticQueryProps) => (
+    render={(data: StaticQueryProps): React.ReactNode => (
       <LayoutRoot>
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: "description", content: data.site.siteMetadata.description },
+            {
+              name: "description",
+              content: data.site.siteMetadata.description,
+            },
             { name: "keywords", content: data.site.siteMetadata.keywords },
           ]}
         />
