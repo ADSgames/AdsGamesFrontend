@@ -2,7 +2,6 @@ import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { fetch } from "cross-fetch";
 
 const httpLink = createHttpLink({
-  credentials: "include",
   fetch,
   uri: "http://localhost:4000",
 });

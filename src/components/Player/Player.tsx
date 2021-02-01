@@ -14,6 +14,7 @@ import type { Game } from "../../models";
 import Controls from "../GameControls/GameControls";
 import GameBanner from "../GameBanner/GameBanner";
 import HtmlPlayer from "./HtmlPlayer";
+import Downloads from "./Downloads";
 
 const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
   const { loading, error, data } = useQuery<{ game: Game }>(GET_GAME, {
@@ -31,7 +32,8 @@ const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
         </Container>
         <Container>
           <GameBanner images={data.game.images} />
-          <HtmlPlayer />
+          <HtmlPlayer files={data.game.files} />
+          <Downloads files={data.game.files} />
           <Card title="About">
             <LinkDescription>{data.game.description}</LinkDescription>
           </Card>
