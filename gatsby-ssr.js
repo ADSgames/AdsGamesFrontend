@@ -1,7 +1,14 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./src/apollo";
 
-// You can delete this file if you're not using it
+import { defaultTheme } from "./src/styles/theme.ts";
+
+export const wrapRootElement = ({ element }) => {
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <ApolloProvider client={client}>{element}</ApolloProvider>
+    </ThemeProvider>
+  );
+};

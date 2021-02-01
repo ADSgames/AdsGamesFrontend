@@ -1,5 +1,4 @@
 import type { DefaultTheme } from "styled-components";
-
 export const defaultTheme: DefaultTheme = {
   borderRadius: "5px",
   colors: {
@@ -27,18 +26,15 @@ export const defaultTheme: DefaultTheme = {
     white: "#fff",
     black: "#000",
   },
-
   widths: {
     md: 720,
     lg: 960,
     xl: 1140,
   },
-
   heights: {
     header: 0,
     nav: 50,
   },
-
   breakpoints: {
     xs: 0,
     sm: 576,
@@ -46,7 +42,6 @@ export const defaultTheme: DefaultTheme = {
     lg: 992,
     xl: 1200,
   },
-
   dimensions: {
     fontSize: {
       regular: 16,
@@ -67,7 +62,6 @@ export const defaultTheme: DefaultTheme = {
     },
     containerPadding: 1.5,
   },
-
   fonts: {
     sansSerif:
       '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif',
