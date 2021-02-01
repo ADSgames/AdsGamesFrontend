@@ -1,15 +1,34 @@
 import * as React from "react";
 
-import { SlideContainer } from "./Slide.style";
+import * as ROUTES from "../../constants/routes";
+
+import {
+  SlideContainer,
+  SlideImage,
+  ToolTip,
+  ToolTipBody,
+  ToolTipHead,
+} from "./Slide.style";
 
 export const Slide: React.FC<{
   image?: string;
   title?: string;
   description?: string;
-}> = ({ image, title, description }) => (
-  <SlideContainer>
-    {image}
-    {title}
-    {description}
-  </SlideContainer>
-);
+  index: number;
+  currentIndex: number;
+  id: string;
+}> = ({ image, title, description, index, currentIndex, id }) => {
+  if (currentIndex !== index) {
+    return null;
+  }
+
+  return (
+    <SlideContainer to={`${ROUTES.GAMES}${id}`}>
+      <SlideImage src={image} />
+      <ToolTip>
+        <ToolTipHead>{title}</ToolTipHead>
+        <ToolTipBody>{description}</ToolTipBody>
+      </ToolTip>
+    </SlideContainer>
+  );
+};

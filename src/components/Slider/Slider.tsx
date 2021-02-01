@@ -10,6 +10,7 @@ interface SlideType {
   image?: string;
   title?: string;
   description?: string;
+  index: number;
 }
 
 export const Slider: React.FC<{
@@ -18,7 +19,7 @@ export const Slider: React.FC<{
   const [index, setIndex] = React.useState(0);
 
   const handleClickLeft = (): void => {
-    setIndex((index + slides.length) % slides.length);
+    setIndex((index - 1 + slides.length) % slides.length);
   };
 
   const handleClickRight = (): void => {
@@ -33,6 +34,10 @@ export const Slider: React.FC<{
           description={slide.description}
           title={slide.title}
           key={slide.id}
+          id={slide.id}
+          image={slide.image}
+          index={slide.index}
+          currentIndex={index}
         />
       ))}
       <SliderButton onClick={handleClickRight} position="right" />

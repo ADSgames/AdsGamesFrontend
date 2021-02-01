@@ -28,6 +28,7 @@ export const GET_GAMES = gql`
       name
       short_name
       id
+      description
       images {
         url
         type

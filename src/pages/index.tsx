@@ -35,7 +35,7 @@ const IndexPage: React.FC = () => {
   const { data: featuredData, loading: featuredLoading } = useQuery<{
     featuredGames: FeaturedGame[];
   }>(GET_FAVORITES);
-
+  console.log(gameData);
   useEffect(() => {
     if (!featuredData?.featuredGames || !gameData?.games) {
       return;
@@ -58,11 +58,14 @@ const IndexPage: React.FC = () => {
             >
               {gameData && featuredData && (
                 <Slider
-                  slides={featuredGames.map((game) => ({
+                  slides={featuredGames.map((game, index) => ({
                     id: game.id,
                     title: game.name,
                     description: game.description,
-                    image: "",
+                    image:
+                      game.images.find((image) => image.type === "wide")?.url ??
+                      "",
+                    index,
                   }))}
                 />
               )}
