@@ -3,9 +3,6 @@ name: Build, Deploy
 on:
   push:
     branches:
-      - master
-  pull_request:
-    branches:
       - feature/deploy-site
 
 jobs:
