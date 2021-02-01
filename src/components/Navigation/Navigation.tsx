@@ -61,7 +61,7 @@ export const navLinks: NavButtonProps[] = [
 
 const Navigation: React.FC = () => (
   <NavContainer>
-    <LogoContainer image={logoBlack} imageHover={logo} to={ROUTES.HOME} />
+    <LogoContainer image={logoBlack} hoverImage={logo} to={ROUTES.HOME} />
     {navLinks.map((link) => (
       <NavButton key={link.text} {...link} />
     ))}

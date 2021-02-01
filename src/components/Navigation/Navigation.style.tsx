@@ -26,7 +26,7 @@ export const NavContainer = styled.nav<{ theme: DefaultTheme }>`
 
 export const LogoContainer = styled(Link)<{
   image: string;
-  imageHover: string;
+  hoverImage: string;
 }>`
   align-self: center;
   height: 40px;
@@ -35,7 +35,7 @@ export const LogoContainer = styled(Link)<{
   background-size: cover;
 
   &:hover {
-    background: url(${(props): string => props.imageHover});
+    background: url(${(props): string => props.hoverImage});
     background-size: cover;
   }
 `;
