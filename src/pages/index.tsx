@@ -32,10 +32,11 @@ const IndexPage: React.FC = () => {
   const { data: gameData, loading: gameLoading } = useQuery<{ games: Game[] }>(
     GET_GAMES
   );
+
   const { data: featuredData, loading: featuredLoading } = useQuery<{
     featuredGames: FeaturedGame[];
   }>(GET_FAVORITES);
-  console.log(gameData);
+
   useEffect(() => {
     if (!featuredData?.featuredGames || !gameData?.games) {
       return;
