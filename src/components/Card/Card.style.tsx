@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const StyledCard = styled.div`
-  background-color: #E4E4E4;
+export const StyledCard = styled.div<{ padding?: number }>`
+  background-color: #e4e4e4;
   display: flex;
   overflow: hidden;
   border-bottom: 3px solid #bbb;
@@ -9,6 +9,7 @@ export const StyledCard = styled.div`
   width: 95%;
   position: relative;
   margin: 15px auto;
+  padding: ${(props): number => props.padding ?? 0}px;
 `;
 
 export const CardTitle = styled.h3`

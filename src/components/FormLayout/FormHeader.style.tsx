@@ -7,6 +7,6 @@ export const StyledFormHeader = styled.div`
 export const FormHeaderText = styled.p`
   color: black;
   font-size: 16px;
-  padding: 12px;
+  padding: 8px;
   text-align: center;
 `;

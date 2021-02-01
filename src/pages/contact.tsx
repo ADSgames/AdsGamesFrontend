@@ -4,11 +4,8 @@ import Page from "../components/Page";
 import Container from "../components/Container";
 import Card from "../components/Card";
 import ContentHeader from "../components/ContentHeader";
-import TextInput from "../components/Inputs/TextInput";
-import TextArea from "../components/Inputs/TextArea";
-import Button from "../components/Inputs/Button";
 import FormHeader from "../components/FormLayout/FormHeader";
-import { Formik, Form } from 'formik';
+import ContactForm from "../components/ContactForm/ContactForm";
 
 import MainLayout from "../layouts";
 import { SEO } from "../components/SEO";
@@ -19,32 +16,17 @@ const ContactPage: React.FC = () => (
     <Page>
       <Container>
         <ContentHeader text="Contact Us" />
-        <Card>
+        <Card padding={20}>
           <FormHeader>
             <h3>Something on your mind?</h3>
-            <p>You can shoot us an e-mail below.</p>  
+            <p>You can shoot us an e-mail below.</p>
           </FormHeader>
-          <Formik
-            initialValues={{ name: '', email: '', message: '' }}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-            }}
-          >
-            <Form>
-              <TextInput label="Name" placeholder="ex. John Smith"></TextInput>        
-              <TextInput label="E-mail" placeholder="ex. johnsmith@mail.com"></TextInput> 
-              <TextArea label="Message" placeholder="Type your message..."></TextArea>    
-              <Button>Send Message</Button>    
-            </Form>
-          </Formik>
+          <ContactForm />
         </Card>
 
-        <Card>
+        <Card padding={20}>
           <FormHeader>
-            <h3>While you're at it, check these out!</h3>
+            <h3>While you&apos;re at it, check these out!</h3>
           </FormHeader>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
