@@ -9,6 +9,8 @@ const StyledPage = styled.div`
 
 const Page: React.FC<{
   className?: string;
-}> = ({ children, className }) => <StyledPage className={className}>{children}</StyledPage>;
+}> = ({ children, className }) => (
+  <StyledPage className={className}>{children}</StyledPage>
+);
 
 export default Page;

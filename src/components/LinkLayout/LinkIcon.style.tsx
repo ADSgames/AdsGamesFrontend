@@ -5,9 +5,11 @@ export const LinkIconContainer = styled.div<{
   color?: string;
 }>`
   height: 100%;
-  max-width: ${props => (props.width ? `{props.width}px` : "auto")};
-  min-width: ${props => (props.width ? `{props.width}px` : "auto")};
-  background-color: ${props => props.color};
+  max-width: ${(props): string =>
+    typeof props.width === "number" ? `{props.width}px` : "auto"};
+  min-width: ${(props): string =>
+    typeof props.width === "number" ? `{props.width}px` : "auto"};
+  background-color: ${(props): string | undefined => props.color};
 `;
 
 export const StyledLinkIcon = styled.img`

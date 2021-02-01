@@ -5,31 +5,34 @@ export const StyledLinkButton = styled("button")`
   min-height: 30px;
   min-width: 30px;
 
-  background-color: ${props => props.theme.colors.ui.input};
+  background-color: ${(props): string => props.theme.colors.ui.input};
   text-align: center;
   font-weight: 600;
-  font-size: ${props => props.theme.dimensions.fontSize.regular}px;
-  padding: ${props => props.theme.dimensions.radius.input}px;
+  font-size: ${(props): number => props.theme.dimensions.fontSize.regular}px;
+  padding: ${(props): number => props.theme.dimensions.radius.input}px;
 
   border-radius: 5px;
   border-left: 0;
   border-right: 0;
-  border-bottom: 3px solid ${props => darken(0.1, props.theme.colors.ui.input)};
+  border-bottom: 3px solid
+    ${(props): string => darken(0.1, props.theme.colors.ui.input)};
   border-top: 0px solid transparent;
-  box-shadow: 0 1px 1px 0 ${props => props.theme.colors.boxShadow};
+  box-shadow: 0 1px 1px 0 ${(props): string => props.theme.colors.boxShadow};
 
   transition: all 0.1s ease-in;
 
   &:hover {
-    border-bottom: 2px solid ${props => darken(0.1, props.theme.colors.ui.input)};
+    border-bottom: 2px solid
+      ${(props): string => darken(0.1, props.theme.colors.ui.input)};
     border-top: 1px solid transparent;
-    box-shadow: 0 0.5px 1px 0 ${props => props.theme.colors.boxShadow};
+    box-shadow: 0 0.5px 1px 0 ${(props): string => props.theme.colors.boxShadow};
   }
 
   &:active {
     border-bottom: 0px solid transparent;
-    border-top: 3px solid ${props => darken(0.4, props.theme.colors.ui.input)};
-    box-shadow: inset 0 1px 8px -1px ${props => props.theme.colors.boxShadow};
+    border-top: 3px solid
+      ${(props): string => darken(0.4, props.theme.colors.ui.input)};
+    box-shadow: inset 0 1px 8px -1px ${(props): string => props.theme.colors.boxShadow};
   }
 `;
 

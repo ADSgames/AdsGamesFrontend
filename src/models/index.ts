@@ -1,110 +1,74 @@
 export type Maybe<T> = T | null;
-/** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
 };
-
-export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE",
-}
-
-export type Control = {
-  __typename?: "Control";
-  gameId: Scalars["ID"];
-  controlId: Scalars["ID"];
-  description: Scalars["String"];
-  control: ControlType;
-};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 
 export type ControlType = {
-  __typename?: "ControlType";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  shortName: Scalars["String"];
-  image: Scalars["String"];
+  id: string;
+  name: string;
+  short_name: string;
+  image: string;
 };
 
-export type Game = {
-  __typename?: "Game";
-  id: Scalars["ID"];
-  shortName: Scalars["String"];
-  name: Scalars["String"];
-  description: Scalars["String"];
-  typeId: Scalars["ID"];
-  source?: Maybe<Scalars["String"]>;
-  file?: Maybe<Scalars["String"]>;
-  width?: Maybe<Scalars["Int"]>;
-  height?: Maybe<Scalars["Int"]>;
-  version?: Maybe<Scalars["String"]>;
-  visible?: Maybe<Scalars["Boolean"]>;
-  controller?: Maybe<Scalars["Int"]>;
-  type: GameType;
-  controls: Array<Control>;
+export type Control = {
+  game_id: string;
+  description: string;
+  type: string;
 };
 
 export type GameType = {
-  __typename?: "GameType";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  description: Scalars["String"];
+  id: string;
+  name: string;
+  description: string;
 };
 
-export type Query = {
-  __typename?: "Query";
-  controlTypes: Array<ControlType>;
-  controlType?: Maybe<ControlType>;
+export type GameImage = {
+  game_id: string;
+  type: string;
+  url: string;
+};
+
+export type Game = {
+  id: string;
+  short_name: string;
+  name: string;
+  description: string;
+  type_id: string;
+  source?: Maybe<string>;
+  file?: Maybe<string>;
+  width?: Maybe<number>;
+  height?: Maybe<number>;
+  version?: Maybe<string>;
+  visible?: Maybe<boolean>;
+  controller?: Maybe<number>;
+  type: GameType;
   controls: Array<Control>;
-  gameTypes: Array<GameType>;
-  gameType?: Maybe<GameType>;
-  games: Array<Game>;
-  game?: Maybe<Game>;
-  roles: Array<Role>;
-  role?: Maybe<Role>;
-  users: Array<User>;
-  user?: Maybe<User>;
+  images: Array<GameImage>;
 };
 
-export type QueryControlTypeArgs = {
-  id: Scalars["String"];
-};
-
-export type QueryGameTypeArgs = {
-  id: Scalars["String"];
-};
-
-export type QueryGameArgs = {
-  id: Scalars["String"];
-};
-
-export type QueryRoleArgs = {
-  id: Scalars["String"];
-};
-
-export type QueryUserArgs = {
-  id: Scalars["String"];
+export type FeaturedGame = {
+  game_id: string;
+  place: number;
 };
 
 export type Role = {
-  __typename?: "Role";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  shortName: Scalars["String"];
+  id: string;
+  name: string;
+  short_name: string;
 };
 
 export type User = {
-  __typename?: "User";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  email: Scalars["String"];
-  roleId: Scalars["ID"];
-  avatar?: Maybe<Scalars["String"]>;
-  about?: Maybe<Scalars["String"]>;
-  website?: Maybe<Scalars["String"]>;
-  location?: Maybe<Scalars["String"]>;
+  id: string;
+  name: string;
+  email: string;
+  role_id: string;
+  avatar?: Maybe<string>;
+  about?: Maybe<string>;
+  website?: Maybe<string>;
+  location?: Maybe<string>;
   role: Role;
 };

@@ -9,12 +9,10 @@ export interface GameCardProps {
   width?: number;
 }
 
-const LinkIcon: React.FC<GameCardProps> = ({ title, image, color, width }) => {
-  return (
-    <LinkIconContainer color={color} width={width}>
-      <StyledLinkIcon src={image} alt={title} />
-    </LinkIconContainer>
-  );
-};
+const LinkIcon: React.FC<GameCardProps> = ({ title, image, color, width }) => (
+  <LinkIconContainer color={color} width={width}>
+    <StyledLinkIcon src={image} alt={title} />
+  </LinkIconContainer>
+);
 
 export default LinkIcon;
