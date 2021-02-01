@@ -1,7 +1,14 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { fetch } from "cross-fetch";
+
+const httpLink = createHttpLink({
+  credentials: "include",
+  fetch,
+  uri: "http://localhost:4000",
+});
 
 export const client = new ApolloClient({
-  uri: "http://localhost:4000",
+  link: httpLink,
   cache: new InMemoryCache(),
   defaultOptions: {
     watchQuery: {
