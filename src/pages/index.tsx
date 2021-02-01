@@ -19,9 +19,9 @@ const mapFeaturedGames = (
   games: Game[]
 ): Game[] =>
   featuredGames
-    .map(({ place, gameId }) => ({
+    .map(({ place, game_id }) => ({
       place,
-      game: games.find((game) => game.id === gameId),
+      game: games.find((game) => game.id === game_id),
     }))
     .sort((gameA, gameB) => gameA.place - gameB.place)
     .flatMap(({ game }) => (game ? [game] : []));

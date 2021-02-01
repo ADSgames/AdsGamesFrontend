@@ -3,8 +3,8 @@ import { Router } from "@reach/router";
 
 import * as ROUTES from "../constants/routes";
 
-import GamesPage from "../views/games/games";
-import PlayerPage from "../views/games/player";
+import GamesPage from "../components/GameList/GameList";
+import PlayerPage from "../components/Player/Player";
 
 const GameRouter: React.FC = () => (
   <Router>

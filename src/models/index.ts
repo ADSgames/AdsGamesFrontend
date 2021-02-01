@@ -1,119 +1,74 @@
 export type Maybe<T> = T | null;
-/** All built-in and custom scalars, mapped to their actual values */
-export interface Scalars {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: unknown;
-}
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 
-export enum CacheControlScope {
-  Public = "PUBLIC",
-  Private = "PRIVATE",
-}
+export type ControlType = {
+  id: string;
+  name: string;
+  short_name: string;
+  image: string;
+};
 
-export interface Control {
-  __typename?: "Control";
-  gameId: Scalars["ID"];
-  controlId: Scalars["ID"];
-  description: Scalars["String"];
-  control: ControlType;
-}
+export type Control = {
+  game_id: string;
+  description: string;
+  type: string;
+};
 
-export interface ControlType {
-  __typename?: "ControlType";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  shortName: Scalars["String"];
-  image: Scalars["String"];
-}
+export type GameType = {
+  id: string;
+  name: string;
+  description: string;
+};
 
-export interface FeaturedGame {
-  __typename?: "FeaturedGame";
-  gameId: Scalars["String"];
-  place: Scalars["Int"];
-}
+export type GameImage = {
+  game_id: string;
+  type: string;
+  url: string;
+};
 
-export interface Game {
-  __typename?: "Game";
-  id: Scalars["ID"];
-  shortName: Scalars["String"];
-  name: Scalars["String"];
-  description: Scalars["String"];
-  typeId: Scalars["ID"];
-  source?: Maybe<Scalars["String"]>;
-  file?: Maybe<Scalars["String"]>;
-  width?: Maybe<Scalars["Int"]>;
-  height?: Maybe<Scalars["Int"]>;
-  version?: Maybe<Scalars["String"]>;
-  visible?: Maybe<Scalars["Boolean"]>;
-  controller?: Maybe<Scalars["Int"]>;
+export type Game = {
+  id: string;
+  short_name: string;
+  name: string;
+  description: string;
+  type_id: string;
+  source?: Maybe<string>;
+  file?: Maybe<string>;
+  width?: Maybe<number>;
+  height?: Maybe<number>;
+  version?: Maybe<string>;
+  visible?: Maybe<boolean>;
+  controller?: Maybe<number>;
   type: GameType;
-  controls: Control[];
-}
+  controls: Array<Control>;
+  images: Array<GameImage>;
+};
 
-export interface GameType {
-  __typename?: "GameType";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  description: Scalars["String"];
-}
+export type FeaturedGame = {
+  game_id: string;
+  place: number;
+};
 
-export interface Query {
-  __typename?: "Query";
-  controlTypes: ControlType[];
-  controlType?: Maybe<ControlType>;
-  controls: Control[];
-  gameTypes: GameType[];
-  gameType?: Maybe<GameType>;
-  games: Game[];
-  game?: Maybe<Game>;
-  featuredGames: FeaturedGame[];
-  roles: Role[];
-  role?: Maybe<Role>;
-  users: User[];
-  user?: Maybe<User>;
-}
+export type Role = {
+  id: string;
+  name: string;
+  short_name: string;
+};
 
-export interface QueryControlTypeArgs {
-  id: Scalars["String"];
-}
-
-export interface QueryGameTypeArgs {
-  id: Scalars["String"];
-}
-
-export interface QueryGameArgs {
-  id: Scalars["String"];
-}
-
-export interface QueryRoleArgs {
-  id: Scalars["String"];
-}
-
-export interface QueryUserArgs {
-  id: Scalars["String"];
-}
-
-export interface Role {
-  __typename?: "Role";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  shortName: Scalars["String"];
-}
-
-export interface User {
-  __typename?: "User";
-  id: Scalars["ID"];
-  name: Scalars["String"];
-  email: Scalars["String"];
-  roleId: Scalars["ID"];
-  avatar?: Maybe<Scalars["String"]>;
-  about?: Maybe<Scalars["String"]>;
-  website?: Maybe<Scalars["String"]>;
-  location?: Maybe<Scalars["String"]>;
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+  role_id: string;
+  avatar?: Maybe<string>;
+  about?: Maybe<string>;
+  website?: Maybe<string>;
+  location?: Maybe<string>;
   role: Role;
-}
+};

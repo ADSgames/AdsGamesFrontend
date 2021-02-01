@@ -3,8 +3,6 @@ import React from "react";
 import { StyledGameGrid } from "./GameGrid.style";
 import GameCard from "./GameCard";
 
-import gameImage from "../../images/game.png";
-
 import type { Game } from "../../models";
 
 const GameGrid: React.FC<{
@@ -15,7 +13,7 @@ const GameGrid: React.FC<{
       <GameCard
         key={game.id}
         title={game.name}
-        image={gameImage}
+        images={game.images}
         id={game.id}
       />
     ))}

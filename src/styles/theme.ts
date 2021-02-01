@@ -35,7 +35,8 @@ export const defaultTheme: DefaultTheme = {
   },
 
   heights: {
-    header: 200,
+    header: 0,
+    nav: 50,
   },
 
   breakpoints: {

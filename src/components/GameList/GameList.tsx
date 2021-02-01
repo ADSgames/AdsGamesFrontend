@@ -1,16 +1,16 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 
-import Page from "../../components/Page";
-import Container from "../../components/Container";
-import Card from "../../components/Card";
-import ContentHeader from "../../components/ContentHeader";
-import { GameGrid } from "../../components/GameGrid";
+import Page from "../Page";
+import Container from "../Container";
+import Card from "../Card";
+import ContentHeader from "../ContentHeader";
+import { GameGrid } from "../GameGrid";
 
 import type { Game } from "../../models";
 import IndexLayout from "../../layouts";
 import { GET_GAMES } from "../../queries/games";
-import { ContentLoader, LoadingSpinner } from "../../components/Loaders";
+import { ContentLoader, LoadingSpinner } from "../Loaders";
 
 const GamesPage: React.FC<{ path?: string }> = () => {
   const { loading, error, data } = useQuery<{ games: Game[] }>(GET_GAMES);
