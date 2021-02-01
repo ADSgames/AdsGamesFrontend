@@ -1,16 +1,19 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 
-import Page from "../../components/Page";
-import Container from "../../components/Container";
-import ContentHeader from "../../components/ContentHeader";
-import Card from "../../components/Card";
+import Page from "../Page";
+import Container from "../Container";
+import ContentHeader from "../ContentHeader";
+import Card from "../Card";
 
 import IndexLayout from "../../layouts";
-import { LinkDescription } from "../../components/LinkLayout";
+import { LinkDescription } from "../LinkLayout";
 import { GET_GAME } from "../../queries/games";
 
 import type { Game } from "../../models";
+import Controls from "../GameControls/GameControls";
+import GameBanner from "../GameBanner/GameBanner";
+import HtmlPlayer from "./HtmlPlayer";
 
 const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
   const { loading, error, data } = useQuery<{ game: Game }>(GET_GAME, {
@@ -27,9 +30,12 @@ const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
           <ContentHeader text={data.game.name} />
         </Container>
         <Container>
+          <GameBanner images={data.game.images} />
+          <HtmlPlayer />
           <Card title="About">
             <LinkDescription>{data.game.description}</LinkDescription>
           </Card>
+          <Controls controls={data.game.controls} />
         </Container>
       </Page>
     </IndexLayout>

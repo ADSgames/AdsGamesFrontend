@@ -38,6 +38,7 @@ declare module "styled-components" {
 
     heights: {
       header: number;
+      nav: number;
     };
 
     breakpoints: {

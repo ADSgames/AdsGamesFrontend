@@ -1,11 +1,12 @@
 import * as React from "react";
 
-import { NavContainer } from "./Navigation.style";
+import { NavContainer, LogoContainer } from "./Navigation.style";
 import type { NavButtonProps } from "./NavButton";
 import NavButton from "./NavButton";
 
 import * as ICONS from "../../images/nav_icons";
 import * as ROUTES from "../../constants/routes";
+import { logo, logoBlack } from "../../images/logos";
 
 export const navLinks: NavButtonProps[] = [
   {
@@ -60,6 +61,7 @@ export const navLinks: NavButtonProps[] = [
 
 const Navigation: React.FC = () => (
   <NavContainer>
+    <LogoContainer image={logoBlack} imageHover={logo} to={ROUTES.HOME} />
     {navLinks.map((link) => (
       <NavButton key={link.text} {...link} />
     ))}

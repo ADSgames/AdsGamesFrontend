@@ -1,10 +1,15 @@
 import React from "react";
 
-import { StyledButton } from "./Button.style";
+import { StyledButton, ButtonText } from "./Button.style";
 
 const Button: React.FC<React.HTMLProps<HTMLButtonElement>> = ({
   onClick,
   disabled,
-}) => <StyledButton onClick={onClick} disabled={disabled} />;
+  children,
+}) => (
+  <StyledButton onClick={onClick} disabled={disabled}>
+    <ButtonText>{children}</ButtonText>
+  </StyledButton>
+);
 
 export default Button;

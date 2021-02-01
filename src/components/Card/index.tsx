@@ -8,11 +8,12 @@ import {
   CardTitleContainer,
 } from "./Card.style";
 
-const Card: React.FC<{ title?: string; children: ReactNode }> = ({
-  title,
-  children,
-}) => (
-  <StyledCard>
+const Card: React.FC<{
+  padding?: number;
+  title?: string;
+  children: ReactNode;
+}> = ({ title, children, padding }) => (
+  <StyledCard padding={padding}>
     {Boolean(title) && (
       <CardTitleContainer>
         <CardTitle>{title}</CardTitle>
