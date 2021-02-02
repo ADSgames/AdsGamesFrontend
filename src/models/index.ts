@@ -13,11 +13,11 @@ export type Control = {
 
 export type GameImage = {
   game_id: string;
-  type: "thumbnail" | "wide" | "large";
+  type: "large" | "thumbnail" | "wide";
   url: string;
 };
 
-export type GameFilePlatform = "windows" | "mac" | "linux" | "web" | "source";
+export type GameFilePlatform = "linux" | "mac" | "source" | "web" | "windows";
 
 export type GameFile = {
   game_id: string;
