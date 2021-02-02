@@ -1,7 +1,10 @@
 import { darken } from "polished";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const StyledButton = styled("button")`
+  display: flex;
+  align-items: center;
   min-height: 30px;
   min-width: 30px;
   background-color: ${(props): string => props.theme.colors.ui.input};
@@ -41,4 +44,13 @@ export const ButtonText = styled.p`
   font-size: 24px;
   margin: 0;
   padding: 3px;
+  text-decoration: none;
+`;
+
+export const ButtonIcon = styled(FontAwesomeIcon)`
+  padding-right: 6px;
+  padding-left: 6px;
+  font-size: 20px;
+  box-sizing: border-box;
+  min-width: 34px;
 `;

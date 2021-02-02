@@ -25,11 +25,25 @@ const GamesPage: React.FC<{ path?: string }> = () => {
             {typeof data !== "undefined" && (
               <>
                 <Card title="Online">
-                  <GameGrid games={data.games} />
+                  <GameGrid
+                    games={data.games.filter(
+                      (game) =>
+                        game.visible &&
+                        game.files.some((file) => file.platform === "web")
+                    )}
+                  />
                 </Card>
 
                 <Card title="Download">
-                  <GameGrid games={data.games} />
+                  <GameGrid
+                    games={data.games.filter(
+                      (game) =>
+                        game.visible &&
+                        game.files.some((file) =>
+                          ["windows", "mac", "linux"].includes(file.platform)
+                        )
+                    )}
+                  />
                 </Card>
               </>
             )}

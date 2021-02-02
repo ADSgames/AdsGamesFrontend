@@ -4,11 +4,11 @@ import { Router } from "@reach/router";
 import * as ROUTES from "../constants/routes";
 
 import GamesPage from "../components/GameList/GameList";
-import PlayerPage from "../components/Player/Player";
+import GamePage from "../components/GamePage/GamePage";
 
 const GameRouter: React.FC = () => (
   <Router>
-    <PlayerPage path={`${ROUTES.GAMES}:id`} />
+    <GamePage path={`${ROUTES.GAMES}:id`} />
     <GamesPage path={ROUTES.GAMES} />
   </Router>
 );

@@ -3,7 +3,13 @@ import React from "react";
 import Card from "../Card";
 
 import type { GameFile } from "../../models";
-import { StyledFrame } from "./HtmlPlayer.style";
+import {
+  FullScreenButton,
+  GameLoader,
+  GameLoaderText,
+  StyledFrame,
+} from "./HtmlPlayer.style";
+import { LoadingSpinner } from "../Loaders";
 
 const requestFullScreen = async (
   element: React.RefObject<HTMLIFrameElement>
@@ -22,7 +28,9 @@ const requestFullScreen = async (
 };
 
 const HtmlPlayer: React.FC<{ files: GameFile[] }> = ({ files }) => {
-  const embed = files.find((file) => file.type === "embed");
+  const [loading, setLoading] = React.useState(true);
+
+  const embed = files.find((file) => file.platform === "web");
   const frameRef = React.useRef<HTMLIFrameElement>(null);
 
   if (!embed) {
@@ -31,20 +39,30 @@ const HtmlPlayer: React.FC<{ files: GameFile[] }> = ({ files }) => {
 
   return (
     <Card>
-      <div
-        onClick={() => {
-          void requestFullScreen(frameRef);
-        }}
-      >
-        {"FullScreen!"}
-      </div>
+      {loading && (
+        <GameLoader>
+          <LoadingSpinner />
+          <GameLoaderText>Loading Game</GameLoaderText>
+        </GameLoader>
+      )}
+
       <StyledFrame
         allowFullScreen
         src={embed.url}
         width="100%"
         height="600px"
         ref={frameRef}
+        onLoad={() => setLoading(false)}
+        visible={!loading}
       />
+
+      <FullScreenButton
+        onClick={() => {
+          void requestFullScreen(frameRef);
+        }}
+      >
+        {"Go Full Screen"}
+      </FullScreenButton>
     </Card>
   );
 };

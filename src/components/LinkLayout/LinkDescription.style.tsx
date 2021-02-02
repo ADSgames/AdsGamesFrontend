@@ -6,13 +6,14 @@ export const StyledLinkDescription = styled.div`
   padding: 10px;
   color: black;
   size: 24px;
+  display: flex;
+  align-items: center;
 `;
 
 export const LinkText = styled.p`
   color: black;
   text-align: left;
-  vertical-align: text-top;
   font-size: 22px;
   margin: 0;
-  padding: 12px;
+  padding: 2px;
 `;

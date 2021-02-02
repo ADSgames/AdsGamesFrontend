@@ -14,13 +14,9 @@ export const GET_GAME = gql`
         url
         type
       }
-      type {
-        name
-        description
-      }
       files {
         url
-        type
+        platform
       }
     }
   }
@@ -37,10 +33,11 @@ export const GET_GAMES = gql`
         url
         type
       }
-      type {
-        name
-        description
+      files {
+        url
+        platform
       }
+      visible
     }
   }
 `;

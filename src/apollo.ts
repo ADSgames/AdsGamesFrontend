@@ -3,7 +3,7 @@ import { fetch } from "cross-fetch";
 
 const httpLink = createHttpLink({
   fetch,
-  uri: "http://localhost:4000",
+  uri: process.env.GATSBY_GRAPHQL_ENDPOINT,
 });
 
 export const client = new ApolloClient({

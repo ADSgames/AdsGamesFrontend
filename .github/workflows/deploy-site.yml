@@ -34,8 +34,7 @@ jobs:
       - name: Build
         run: yarn build
         env:
-          GATSBY_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_GRAPHQL_ENDPOINT_STAGE }}
-          GATSBY_STRIPE_PUBLIC_KEY: ${{ secrets.GATSBY_STRIPE_PUBLIC_KEY_STAGE }}
+          GATSBY_GRAPHQL_ENDPOINT: ${{ secrets.GATSBY_GRAPHQL_ENDPOINT }}
 
       - name: Deploy cached items
         uses: jakejarvis/s3-sync-action@master
