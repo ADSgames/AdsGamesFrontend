@@ -6494,6 +6494,17 @@ gatsby-plugin-create-client-paths@^2.3.10:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+gatsby-plugin-manifest@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.11.0.tgz#66d4b9c29a83211c289ef597f700bd089a399193"
+  integrity sha512-FyKye5egB4nBggKPIx4XlwcXAZYi0e7UoHYTGQkeRtci1nzHC3Q1/GLFfMi9F6jpmJ1Z4S3A+yYshxSap4ySJQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    gatsby-core-utils "^1.9.0"
+    gatsby-plugin-utils "^0.8.0"
+    semver "^7.3.2"
+    sharp "^0.27.0"
+
 gatsby-plugin-page-creator@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-page-creator/-/gatsby-plugin-page-creator-2.9.0.tgz#6c3179ccd18b93593dc3b1c0b6210bf9ddc929e8"
