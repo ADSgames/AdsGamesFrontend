@@ -1,11 +1,11 @@
 import React from "react";
-import type { GameImage } from "../../models";
 
 import Card from "../Card";
 import { BannerBig } from "./GameBanner.style";
+import { GameImage } from "../../models";
 
 const GameBanner: React.FC<{ images?: GameImage[] }> = ({ images = [] }) => {
-  const largeImage = images.find((image) => image.type === "large");
+  const largeImage = images.find((image) => image.type === "LARGE");
 
   if (!largeImage) {
     return null;

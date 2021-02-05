@@ -1,14 +1,11 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { ApolloProvider } from "@apollo/client";
-import { client } from "./src/apollo";
+import Amplify from "aws-amplify";
+import awsconfig from "./src/aws-exports";
+Amplify.configure(awsconfig);
 
 import { defaultTheme } from "./src/styles/theme.ts";
 
 export const wrapRootElement = ({ element }) => {
-  return (
-    <ThemeProvider theme={defaultTheme}>
-      <ApolloProvider client={client}>{element}</ApolloProvider>
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={defaultTheme}>{element}</ThemeProvider>;
 };

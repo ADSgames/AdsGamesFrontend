@@ -16,19 +16,20 @@
     "start": "gatsby develop",
     "test": "yarn type-check && yarn lint",
     "type-check": "tsc",
-    "format-check": "prettier --check \"src/**/*.{ts,tsx,md}\""
+    "format-check": "prettier --check \"src/**/*.{ts,tsx,md}\"",
+    "pull": "amplify pull && amplify codegen models"
   },
   "engines": {
     "node": ">=8.0.0"
   },
   "dependencies": {
-    "@apollo/client": "^3.0.2",
+    "@aws-amplify/ui-react": "^0.2.37",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-brands-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "aws-amplify": "^3.3.17",
     "classnames": "^2.2.6",
-    "cross-fetch": "^3.0.6",
     "formik": "^2.1.4",
     "gatsby": "^2.19.10",
     "gatsby-image": "^2.2.39",
@@ -41,7 +42,6 @@
     "gatsby-source-filesystem": "^2.1.47",
     "gatsby-transformer-json": "^2.2.25",
     "gatsby-transformer-sharp": "^2.3.13",
-    "graphql": "^15.4.0",
     "modern-normalize": "^1.0.0",
     "normalize.css": "^8.0.1",
     "polished": "^4.0.5",

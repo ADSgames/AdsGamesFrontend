@@ -2,11 +2,10 @@ import React from "react";
 
 import Card from "../Card";
 
-import type { Control } from "../../models";
-
 import { CONTROLS } from "../../constants/controls";
 
 import { ControlImage, ControlItem, ControlText } from "./GameControls.style";
+import { Control } from "../../models";
 
 const GameControls: React.FC<{ controls?: Control[] }> = ({
   controls = [],

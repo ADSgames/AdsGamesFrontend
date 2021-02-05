@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@apollo/client";
 
 import Page from "../components/Page";
 import Container from "../components/Container";
@@ -10,42 +9,23 @@ import { GameGrid } from "../components/GameGrid";
 
 import IndexLayout from "../layouts";
 import { SEO } from "../components/SEO";
-import { GET_GAMES, GET_FAVORITES } from "../queries/games";
-import type { Game, FeaturedGame } from "../models";
 import { ContentLoader, LoadingSpinner } from "../components/Loaders";
 
-const mapFeaturedGames = (
-  featuredGames: FeaturedGame[],
-  games: Game[]
-): Game[] =>
-  featuredGames
-    .map(({ place, game_id }) => ({
-      place,
-      game: games.find((game) => game.id === game_id),
-    }))
-    .sort((gameA, gameB) => gameA.place - gameB.place)
-    .flatMap(({ game }) => (game ? [game] : []));
+import { useListQuery } from "../hooks/useListQuery";
+import { Game } from "../models";
 
 const IndexPage: React.FC = () => {
   const [featuredGames, setFeaturedGames] = useState<Game[]>([]);
 
-  const { data: gameData, loading: gameLoading } = useQuery<{ games: Game[] }>(
-    GET_GAMES
-  );
-
-  const { data: featuredData, loading: featuredLoading } = useQuery<{
-    featuredGames: FeaturedGame[];
-  }>(GET_FAVORITES);
+  const { data: gameData, loading: gameLoading } = useListQuery<Game>(Game);
 
   useEffect(() => {
-    if (!featuredData?.featuredGames || !gameData?.games) {
+    if (!gameData?.length) {
       return;
     }
 
-    setFeaturedGames(
-      mapFeaturedGames(featuredData.featuredGames, gameData.games)
-    );
-  }, [featuredData, gameData]);
+    setFeaturedGames(gameData.filter((game) => game.featured));
+  }, [gameData]);
 
   return (
     <IndexLayout>
@@ -53,19 +33,16 @@ const IndexPage: React.FC = () => {
       <Page>
         <Container>
           <Card title="Featured Games">
-            <ContentLoader
-              loader={<LoadingSpinner />}
-              loading={featuredLoading || gameLoading}
-            >
-              {gameData && featuredData && (
+            <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
+              {gameData && (
                 <Slider
                   slides={featuredGames.map((game, index) => ({
                     id: game.id,
                     title: game.name,
                     description: game.description,
                     image:
-                      game.images.find((image) => image.type === "wide")?.url ??
-                      "",
+                      game.images?.find((image) => image.type === "WIDE")
+                        ?.url ?? "",
                     index,
                   }))}
                 />
@@ -74,34 +51,14 @@ const IndexPage: React.FC = () => {
           </Card>
 
           <Card title="Popular Games">
-            <ContentLoader
-              loader={<LoadingSpinner />}
-              loading={featuredLoading || gameLoading}
-            >
-              {gameData && featuredData && (
-                <GameGrid
-                  games={mapFeaturedGames(
-                    featuredData.featuredGames,
-                    gameData.games
-                  )}
-                />
-              )}
+            <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
+              {gameData && <GameGrid games={featuredGames} />}
             </ContentLoader>
           </Card>
 
           <Card title="Top Rated Games">
-            <ContentLoader
-              loader={<LoadingSpinner />}
-              loading={featuredLoading || gameLoading}
-            >
-              {gameData && featuredData && (
-                <GameGrid
-                  games={mapFeaturedGames(
-                    featuredData.featuredGames,
-                    gameData.games
-                  )}
-                />
-              )}
+            <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
+              {gameData && <GameGrid games={featuredGames} />}
             </ContentLoader>
           </Card>
         </Container>

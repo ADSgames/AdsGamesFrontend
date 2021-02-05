@@ -2,8 +2,7 @@ import React from "react";
 
 import { StyledGameGrid } from "./GameGrid.style";
 import GameCard from "./GameCard";
-
-import type { Game } from "../../models";
+import { Game } from "../../models";
 
 const GameGrid: React.FC<{
   games: Game[];

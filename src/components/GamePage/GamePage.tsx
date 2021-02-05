@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/client";
 import React from "react";
 
 import Page from "../Page";
@@ -8,9 +7,7 @@ import Card from "../Card";
 
 import IndexLayout from "../../layouts";
 import { LinkDescription } from "../LinkLayout";
-import { GET_GAME } from "../../queries/games";
 
-import type { Game } from "../../models";
 import GameControls from "../GameControls/GameControls";
 import GameBanner from "../GameBanner/GameBanner";
 import HtmlPlayer from "../HtmlPlayer/HtmlPlayer";
@@ -18,10 +15,11 @@ import GameDownloads from "../GameDownloads/GameDownloads";
 import GameSource from "../GameSource/GameSource";
 import { ContentLoader, LoadingSpinner } from "../Loaders";
 
+import { useItemQuery } from "../../hooks/useItemQuery";
+import { Game } from "../../models";
+
 const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
-  const { loading, error, data } = useQuery<{ game: Game }>(GET_GAME, {
-    variables: { id },
-  });
+  const { loading, error, data } = useItemQuery<Game>(Game, id);
 
   return (
     <IndexLayout>
@@ -31,17 +29,17 @@ const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
           {data && (
             <>
               <Container>
-                <ContentHeader text={data.game.name} />
+                <ContentHeader text={data.name} />
               </Container>
               <Container>
-                <GameBanner images={data.game.images} />
-                <HtmlPlayer files={data.game.files} />
-                <GameControls controls={data.game.controls} />
+                <GameBanner images={data.images} />
+                <HtmlPlayer files={data.files} />
+                <GameControls controls={data.controls} />
                 <Card title="About">
-                  <LinkDescription>{data.game.description}</LinkDescription>
+                  <LinkDescription>{data.description}</LinkDescription>
                 </Card>
-                <GameDownloads files={data.game.files} />
-                <GameSource files={data.game.files} />
+                <GameDownloads files={data.files} />
+                <GameSource files={data.files} />
               </Container>
             </>
           )}

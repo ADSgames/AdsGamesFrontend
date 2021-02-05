@@ -2,7 +2,6 @@ import React from "react";
 
 import Card from "../Card";
 
-import type { GameFile } from "../../models";
 import {
   FullScreenButton,
   GameLoader,
@@ -10,6 +9,7 @@ import {
   StyledFrame,
 } from "./HtmlPlayer.style";
 import { LoadingSpinner } from "../Loaders";
+import { GameFile } from "../../models";
 
 const requestFullScreen = async (
   element: React.RefObject<HTMLIFrameElement>
@@ -27,10 +27,10 @@ const requestFullScreen = async (
   }
 };
 
-const HtmlPlayer: React.FC<{ files: GameFile[] }> = ({ files }) => {
+const HtmlPlayer: React.FC<{ files?: GameFile[] }> = ({ files }) => {
   const [loading, setLoading] = React.useState(true);
 
-  const embed = files.find((file) => file.platform === "web");
+  const embed = files?.find((file) => file.platform === "WEB");
   const frameRef = React.useRef<HTMLIFrameElement>(null);
 
   if (!embed) {

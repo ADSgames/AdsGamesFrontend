@@ -1,29 +1,31 @@
 import React from "react";
 import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 
-import type { GameFile, GameFilePlatform } from "../../models";
 import Card from "../Card";
 import Button from "../Inputs/Button";
+import { GameFile, GameFilePlatform } from "../../models";
 
-const getPlatformIcon = (platform: GameFilePlatform): IconProp => {
+const getPlatformIcon = (
+  platform: GameFilePlatform | keyof typeof GameFilePlatform
+): IconProp => {
   switch (platform) {
-    case "windows":
+    case "WINDOWS":
       return ["fab", "windows"];
-    case "mac":
+    case "MAC":
       return ["fab", "apple"];
-    case "linux":
+    case "LINUX":
       return ["fab", "linux"];
     default:
       return ["fab", "windows"];
   }
 };
 
-const Downloads: React.FC<{ files: GameFile[] }> = ({ files }) => {
+const Downloads: React.FC<{ files?: GameFile[] }> = ({ files }) => {
   const downloads = files
-    .filter((file) => ["windows", "mac", "linux"].includes(file.platform))
+    ?.filter((file) => ["WINDOWS", "MAC", "LINUX"].includes(file.platform))
     .map((file) => ({ ...file, icon: getPlatformIcon(file.platform) }));
 
-  if (!downloads.length) {
+  if (!downloads?.length) {
     return null;
   }
 

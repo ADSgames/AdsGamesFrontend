@@ -1,12 +1,12 @@
 import React from "react";
-import type { GameFile } from "../../models";
+import { GameFile } from "../../models";
 
 import Card from "../Card";
 import Button from "../Inputs/Button";
 import { SourceContainer } from "./GameSource.style";
 
-const GameSource: React.FC<{ files: GameFile[] }> = ({ files }) => {
-  const source = files.find((file) => file.platform === "source");
+const GameSource: React.FC<{ files?: GameFile[] }> = ({ files }) => {
+  const source = files?.find((file) => file.platform === "SOURCE");
 
   if (!source) {
     return null;
