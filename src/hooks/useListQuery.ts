@@ -20,15 +20,15 @@ export const useListQuery = <T extends PersistentModel>(
     try {
       const queryData = await DataStore.query(model, predicate);
       setData(queryData);
-    } catch (error) {
-      setError(error);
+    } catch (e) {
+      setError(e);
     }
 
     setLoading(false);
   };
 
   useEffect(() => {
-    runQuery();
+    void runQuery();
   }, []);
 
   return { loading, data, error };

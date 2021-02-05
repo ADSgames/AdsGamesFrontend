@@ -1,6 +1,6 @@
 {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "adsgam7160c09c",
     "userPoolName": "adsgames",
     "autoVerifiedAttributes": [

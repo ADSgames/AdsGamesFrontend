@@ -9,7 +9,7 @@ export const useItemQuery = <T extends PersistentModel>(
   model: PersistentModelConstructor<T>,
   id: string
 ) => {
-  const [data, setData] = useState<T | undefined>(undefined);
+  const [data, setData] = useState<T | undefined>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -19,15 +19,15 @@ export const useItemQuery = <T extends PersistentModel>(
     try {
       const queryData = await DataStore.query(model, id);
       setData(queryData);
-    } catch (error) {
-      setError(error);
+    } catch (e) {
+      setError(e);
     }
 
     setLoading(false);
   };
 
   useEffect(() => {
-    runQuery();
+    void runQuery();
   }, []);
 
   return { loading, data, error };

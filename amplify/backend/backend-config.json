@@ -28,5 +28,11 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "storage": {
+    "AdsGamesImages": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }

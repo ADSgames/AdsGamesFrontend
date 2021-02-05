@@ -20,7 +20,7 @@ const IndexPage: React.FC = () => {
   const { data: gameData, loading: gameLoading } = useListQuery<Game>(Game);
 
   useEffect(() => {
-    if (!gameData?.length) {
+    if (!gameData.length) {
       return;
     }
 
@@ -34,31 +34,29 @@ const IndexPage: React.FC = () => {
         <Container>
           <Card title="Featured Games">
             <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
-              {gameData && (
-                <Slider
-                  slides={featuredGames.map((game, index) => ({
-                    id: game.id,
-                    title: game.name,
-                    description: game.description,
-                    image:
-                      game.images?.find((image) => image.type === "WIDE")
-                        ?.url ?? "",
-                    index,
-                  }))}
-                />
-              )}
+              <Slider
+                slides={featuredGames.map((game, index) => ({
+                  id: game.id,
+                  title: game.name,
+                  description: game.description,
+                  image:
+                    game.images?.find((image) => image.type === "WIDE")?.url ??
+                    "",
+                  index,
+                }))}
+              />
             </ContentLoader>
           </Card>
 
           <Card title="Popular Games">
             <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
-              {gameData && <GameGrid games={featuredGames} />}
+              <GameGrid games={featuredGames} />
             </ContentLoader>
           </Card>
 
           <Card title="Top Rated Games">
             <ContentLoader loader={<LoadingSpinner />} loading={gameLoading}>
-              {gameData && <GameGrid games={featuredGames} />}
+              <GameGrid games={featuredGames} />
             </ContentLoader>
           </Card>
         </Container>

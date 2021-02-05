@@ -25,7 +25,7 @@ const Downloads: React.FC<{ files?: GameFile[] }> = ({ files }) => {
     ?.filter((file) => ["WINDOWS", "MAC", "LINUX"].includes(file.platform))
     .map((file) => ({ ...file, icon: getPlatformIcon(file.platform) }));
 
-  if (!downloads?.length) {
+  if (!downloads) {
     return null;
   }
 

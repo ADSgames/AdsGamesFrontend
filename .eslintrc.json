@@ -47,6 +47,8 @@
     "@typescript-eslint/array-type": 0,
     "@typescript-eslint/consistent-indexed-object-style": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-inferrable-types": 1
+    "@typescript-eslint/consistent-type-imports": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-implicit-any-catch": 0
   }
 }
