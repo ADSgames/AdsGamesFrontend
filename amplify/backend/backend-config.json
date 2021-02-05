@@ -1,6 +1,6 @@
 {
   "api": {
-    "adsgames": {
+    "AdsGamesApi": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -8,31 +8,13 @@
           "defaultAuthentication": {
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
+              "apiKeyExpirationDays": 7,
+              "description": "Api key for accessing protected resources of adsgames"
             }
           },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
+          "additionalAuthenticationProviders": []
         }
       }
-    }
-  },
-  "auth": {
-    "adsgames": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
-  "storage": {
-    "AdsGamesImages": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
     }
   }
 }

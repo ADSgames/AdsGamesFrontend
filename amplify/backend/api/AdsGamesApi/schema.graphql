@@ -1,4 +1,7 @@
-type Control @model @key(name: "byGame", fields: ["gameID"]) @auth(rules: [{allow: public, operations: [read]}]) {
+type Control
+  @model
+  @key(name: "byGame", fields: ["gameID"])
+  @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
   type: String!
   description: String!
@@ -13,7 +16,10 @@ enum GameFilePlatform {
   SOURCE
 }
 
-type GameFile @model @key(name: "byGame", fields: ["gameID"]) @auth(rules: [{allow: public, operations: [read]}]) {
+type GameFile
+  @model
+  @key(name: "byGame", fields: ["gameID"])
+  @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
   url: String!
   platform: GameFilePlatform!
@@ -26,14 +32,17 @@ enum GameImageType {
   LARGE
 }
 
-type GameImage @model @key(name: "byGame", fields: ["gameID"]) @auth(rules: [{allow: public, operations: [read]}]) {
+type GameImage
+  @model
+  @key(name: "byGame", fields: ["gameID"])
+  @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
   url: String!
   type: GameImageType!
   gameID: ID!
 }
 
-type Game @model @auth(rules: [{allow: public, operations: [read]}]) {
+type Game @model @auth(rules: [{ allow: public, operations: [read] }]) {
   id: ID!
   slug: String!
   name: String!
@@ -44,4 +53,3 @@ type Game @model @auth(rules: [{allow: public, operations: [read]}]) {
   featured: Boolean!
   description: String
 }
- 
