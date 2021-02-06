@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import Page from "../components/Page";
-import Container from "../components/Container";
 import Card from "../components/Card";
 import LinkDescription from "../components/LinkLayout/LinkDescription";
 import LinkLayout from "../components/LinkLayout/LinkLayout";
@@ -14,7 +12,6 @@ import ContentHeader from "../components/ContentHeader";
 import IndexLayout from "../layouts";
 
 import * as ICONS from "../images/about_icons";
-import { SEO } from "../components/SEO";
 
 const staff = [
   {
@@ -60,48 +57,40 @@ const staff = [
 ];
 
 const AboutPage: React.FC = () => (
-  <IndexLayout>
-    <SEO title="About" />
-    <Page>
-      <Container>
-        <ContentHeader text="About A.D.S. Games" />
-        <Card>
+  <IndexLayout title="About">
+    <ContentHeader text="About A.D.S. Games" />
+    <Card>
+      <LinkDescription>
+        A.D.S. (Allan and Daniel Software) Games was founded on the 21st of
+        March 2011 by Allan Legemaate and Daniel Van Stemp. It contains indie
+        games programmed in C++, Java, Visual Basic, Scratch, HTML5, and Game
+        Maker.
+      </LinkDescription>
+    </Card>
+
+    <Card>
+      <ContentHeader text="Staff" />
+    </Card>
+    {staff.map(({ title, text, image, tags, iconBgColor }) => (
+      <Card title={title} key={title}>
+        <LinkLayout>
           <LinkDescription>
-            A.D.S. (Allan and Daniel Software) Games was founded on the 21st of
-            March 2011 by Allan Legemaate and Daniel Van Stemp. It contains
-            indie games programmed in C++, Java, Visual Basic, Scratch, HTML5,
-            and Game Maker.
+            <LinkTagLayout>
+              {tags.map((tag) => (
+                <LinkTag key={tag}>{tag}</LinkTag>
+              ))}
+            </LinkTagLayout>
+            {text}
           </LinkDescription>
-        </Card>
-      </Container>
-      <Container>
-        <Card>
-          <ContentHeader text="Staff" />
-        </Card>
-      </Container>
-      {staff.map(({ title, text, image, tags, iconBgColor }) => (
-        <Container key={title}>
-          <Card title={title}>
-            <LinkLayout>
-              <LinkDescription>
-                <LinkTagLayout>
-                  {tags.map((tag) => (
-                    <LinkTag key={tag}>{tag}</LinkTag>
-                  ))}
-                </LinkTagLayout>
-                {text}
-              </LinkDescription>
-              <LinkIcon
-                color={iconBgColor}
-                title={title}
-                image={image}
-                width={160}
-              />
-            </LinkLayout>
-          </Card>
-        </Container>
-      ))}
-    </Page>
+          <LinkIcon
+            color={iconBgColor}
+            title={title}
+            image={image}
+            width={160}
+          />
+        </LinkLayout>
+      </Card>
+    ))}
   </IndexLayout>
 );
 

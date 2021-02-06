@@ -1,5 +1,5 @@
 import React from "react";
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import { StyledButton, ButtonText, ButtonIcon } from "./Button.style";
 

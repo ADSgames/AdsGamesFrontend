@@ -3,7 +3,9 @@ import React from "react";
 import { Auth } from "aws-amplify";
 import { Form, Formik, Field, FieldProps, FormikHelpers } from "formik";
 import { RouteComponentProps } from "@reach/router";
-import { navigate } from "gatsby";
+import { Link, navigate } from "gatsby";
+
+import IndexLayout from "../../layouts";
 
 import ContentHeader from "../ContentHeader";
 import Card from "../Card";
@@ -17,32 +19,47 @@ interface LoginParams {
   password: string;
 }
 
-const SignUpForm: React.FC<RouteComponentProps> = () => {
-  const signUp = async (
+interface LoginError {
+  message: string;
+  code: string;
+}
+
+const LoginPage: React.FC<RouteComponentProps> = () => {
+  const [canResend, setCanResend] = React.useState(false);
+  const [resendEmail, setResendEmail] = React.useState("");
+  const [resendSent, setResendSent] = React.useState(false);
+
+  const signIn = async (
     params: LoginParams,
     helpers: FormikHelpers<LoginParams>
   ) => {
     try {
-      const resp = await Auth.signUp({
-        ...params,
-        attributes: { email: params.username },
-      });
+      await Auth.signIn(params.username, params.password);
+      void navigate(ROUTES.DASHBOARD);
+    } catch (error: unknown) {
+      setResendSent(false);
+      helpers.setErrors({ password: (error as LoginError).message });
 
-      void navigate(
-        `${ROUTES.SIGN_UP_CONFIRM}${resp.codeDeliveryDetails.Destination}`
-      );
-    } catch (error) {
-      helpers.setErrors({ password: (error as Error).message });
+      if ((error as LoginError).code === "UserNotConfirmedException") {
+        setCanResend(true);
+        setResendEmail(params.username);
+      }
     }
   };
 
+  const resendLink = async () => {
+    setCanResend(false);
+    await Auth.resendSignUp(resendEmail);
+    setResendSent(true);
+  };
+
   return (
-    <>
-      <ContentHeader text="Create Account" />
+    <IndexLayout title="Sign In">
+      <ContentHeader text="Sign In" />
       <Card padding={16}>
         <Formik
           initialValues={{ username: "", password: "" }}
-          onSubmit={signUp}
+          onSubmit={signIn}
         >
           <Form>
             <Field name="username">
@@ -67,12 +84,19 @@ const SignUpForm: React.FC<RouteComponentProps> = () => {
                 />
               )}
             </Field>
-            <Button type="submit">Sign Up</Button>
+            <Button type="submit">Login</Button>
           </Form>
         </Formik>
+        {canResend && (
+          <Button type="button" onClick={resendLink}>
+            Resend Link
+          </Button>
+        )}
+        {resendSent && <p>Link resent to email {resendEmail} </p>}
+        <Link to={ROUTES.FORGOT_PASSWORD}>Forgot password?</Link>
       </Card>
-    </>
+    </IndexLayout>
   );
 };
 
-export default SignUpForm;
+export default LoginPage;

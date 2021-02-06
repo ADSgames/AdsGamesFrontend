@@ -1,4 +1,5 @@
-import type { DefaultTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
+
 export const defaultTheme: DefaultTheme = {
   borderRadius: "5px",
   colors: {
@@ -32,7 +33,7 @@ export const defaultTheme: DefaultTheme = {
     xl: 1140,
   },
   heights: {
-    header: 0,
+    header: 200,
     nav: 50,
   },
   breakpoints: {

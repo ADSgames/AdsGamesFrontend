@@ -1,21 +1,32 @@
-<h1 align="center">
-  A.D.S. Games Frontend
-</h1>
+# A.D.S. Games Frontend
 
 Future frontend for A.D.S. Games website
 
 ## 🔧 Setup
 
-1.  **Start developing.**
+```sh
+yarn
+yarn start
+```
 
-    ```bash
-    yarn start
-    ```
+## Amplify
 
-2.  **Build your application for production.**
+Installing
 
-    Once you're finished, you can make production build of your app using:
+```sh
+npm install -g @aws-amplify/cli
+```
 
-    ```bash
-    yarn build
-    ```
+Pull (you must have access to the aws resources)
+
+```sh
+amplify pull
+```
+
+Link to your logged in aws profile (`aws configure`) and set the preset settings.
+
+Pushing Changes
+
+```sh
+amplify push
+```

@@ -1,12 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import type { DefaultTheme } from "styled-components";
 
-const StyledLayoutMain = styled.main<{ theme: DefaultTheme }>`
+const StyledLayoutMain = styled.main`
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-top: ${(props): number => props.theme.heights.nav}px;
+  margin-top: 10px;
 `;
 
 const LayoutMain: React.FC<{

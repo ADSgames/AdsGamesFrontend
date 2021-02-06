@@ -1,5 +1,4 @@
 import React from "react";
-import type { ReactNode } from "react";
 import { StyledFormHeader, FormHeaderText } from "./FormHeader.style";
 
 export interface DescriptionProps {
@@ -7,7 +6,7 @@ export interface DescriptionProps {
 }
 
 const FormHeader: React.FC<{
-  children: ReactNode;
+  children: React.ReactNode;
 }> = ({ children }) => (
   <StyledFormHeader>
     <FormHeaderText>{children}</FormHeaderText>

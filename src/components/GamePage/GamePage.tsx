@@ -2,7 +2,6 @@ import React from "react";
 import { RouteComponentProps } from "@reach/router";
 
 import Page from "../Page";
-import Container from "../Container";
 import ContentHeader from "../ContentHeader";
 import Card from "../Card";
 
@@ -29,19 +28,16 @@ const Player: React.FC<RouteComponentProps<{ id: string }>> = ({ id = "" }) => {
           {error && <p>Error :(</p>}
           {data && (
             <>
-              <Container>
-                <ContentHeader text={data.name} />
-              </Container>
-              <Container>
-                <GameBanner images={data.images} />
-                <HtmlPlayer files={data.files} />
-                <GameControls controls={data.controls} />
-                <Card title="About">
-                  <LinkDescription>{data.description}</LinkDescription>
-                </Card>
-                <GameDownloads files={data.files} />
-                <GameSource files={data.files} />
-              </Container>
+              <ContentHeader text={data.name} />
+
+              <GameBanner images={data.images} />
+              <HtmlPlayer files={data.files} />
+              <GameControls controls={data.controls} />
+              <Card title="About">
+                <LinkDescription>{data.description}</LinkDescription>
+              </Card>
+              <GameDownloads files={data.files} />
+              <GameSource files={data.files} />
             </>
           )}
         </ContentLoader>

@@ -1,35 +1,28 @@
 import * as React from "react";
+import { Router } from "@reach/router";
 
-import Page from "../components/Page";
-import Container from "../components/Container";
-import Card from "../components/Card";
-import ContentHeader from "../components/ContentHeader";
+import * as ROUTES from "../constants/routes";
 
-import IndexLayout from "../layouts";
-import { SEO } from "../components/SEO";
+import SignUpConfirmed from "../components/Login/SignUpConfirmed";
+import SignUpForm from "../components/Login/SignUpForm";
+import LoginPage from "../components/Login/Login";
+import DashboardPage from "../components/Dashboard";
+import MembersPage from "../components/Login/Members";
+import ForgotPassword from "../components/Login/ForgotPassword";
+import ResetPassword from "../components/Login/ResetPassword";
+import AddGamePage from "../components/Dashboard/Games/AddGame";
 
-const MembersPage: React.FC = () => (
-  <IndexLayout>
-    <SEO title="Members" />
-    <Page>
-      <Container>
-        <ContentHeader text="Members" />
-
-        <Card>
-          <h1>Content here</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </Card>
-      </Container>
-    </Page>
-  </IndexLayout>
+const MembersRouter: React.FC = () => (
+  <Router>
+    <SignUpForm path={ROUTES.SIGN_UP} />
+    <SignUpConfirmed path={`${ROUTES.SIGN_UP_CONFIRM}:email`} />
+    <LoginPage path={ROUTES.LOG_IN} />
+    <DashboardPage path={ROUTES.DASHBOARD} />
+    <MembersPage path={ROUTES.MEMBERS} />
+    <ForgotPassword path={ROUTES.FORGOT_PASSWORD} />
+    <ResetPassword path={ROUTES.RESET_PASSWORD} />
+    <AddGamePage path={ROUTES.ADD_GAME} />
+  </Router>
 );
 
-export default MembersPage;
+export default MembersRouter;

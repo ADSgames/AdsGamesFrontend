@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import Page from "../components/Page";
-import Container from "../components/Container";
 import ContentHeader from "../components/ContentHeader";
 import Card from "../components/Card";
 
@@ -13,7 +11,6 @@ import {
   LinkDescription,
 } from "../components/LinkLayout";
 import * as LINK_ICONS from "../images/link_icons";
-import { SEO } from "../components/SEO";
 
 const links = [
   {
@@ -131,32 +128,25 @@ const links = [
 ];
 
 const LinksPage: React.FC = () => (
-  <IndexLayout>
-    <SEO title="Links" />
-    <Page>
-      <Container>
-        <ContentHeader text="Useful Links" />
-      </Container>
+  <IndexLayout title="Links">
+    <ContentHeader text="Useful Links" />
 
-      {links.map(({ title, text, extLinks, image, iconBgColor }) => (
-        <Container key={title}>
-          <Card title={title}>
-            <LinkLayout>
-              <LinkDescription>
-                {text}
-                <br />
-                {extLinks.map((link) => (
-                  <LinkButton key={link.text}>
-                    <a href={link.location}>{link.text}</a>
-                  </LinkButton>
-                ))}
-              </LinkDescription>
-              <LinkIcon color={iconBgColor} title={title} image={image} />
-            </LinkLayout>
-          </Card>
-        </Container>
-      ))}
-    </Page>
+    {links.map(({ title, text, extLinks, image, iconBgColor }) => (
+      <Card key={title} title={title}>
+        <LinkLayout>
+          <LinkDescription>
+            {text}
+            <br />
+            {extLinks.map((link) => (
+              <LinkButton key={link.text}>
+                <a href={link.location}>{link.text}</a>
+              </LinkButton>
+            ))}
+          </LinkDescription>
+          <LinkIcon color={iconBgColor} title={title} image={image} />
+        </LinkLayout>
+      </Card>
+    ))}
   </IndexLayout>
 );
 

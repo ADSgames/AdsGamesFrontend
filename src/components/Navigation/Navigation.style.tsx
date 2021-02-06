@@ -1,6 +1,4 @@
-import styled from "styled-components";
-import type { DefaultTheme } from "styled-components";
-import { Link } from "gatsby";
+import styled, { DefaultTheme } from "styled-components";
 
 export const NavContainer = styled.nav<{ theme: DefaultTheme }>`
   position: fixed;
@@ -21,21 +19,5 @@ export const NavContainer = styled.nav<{ theme: DefaultTheme }>`
 
   &:hover {
     height: 70px;
-  }
-`;
-
-export const LogoContainer = styled(Link)<{
-  image: string;
-  imageHover: string;
-}>`
-  align-self: center;
-  height: 40px;
-  width: 40px;
-  background: url(${(props): string => props.image});
-  background-size: cover;
-
-  &:hover {
-    background: url(${(props): string => props.imageHover});
-    background-size: cover;
   }
 `;

@@ -1,5 +1,4 @@
 import React from "react";
-import type { ReactNode } from "react";
 
 import {
   StyledCard,
@@ -11,7 +10,7 @@ import {
 const Card: React.FC<{
   padding?: number;
   title?: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }> = ({ title, children, padding }) => (
   <StyledCard padding={padding}>
     {Boolean(title) && (

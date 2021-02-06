@@ -9,6 +9,9 @@ import Header from "../components/Header";
 import LayoutRoot from "../components/LayoutRoot";
 import LayoutMain from "../components/LayoutMain";
 import Footer from "../components/Footer";
+import { SEO } from "../components/SEO";
+import Page from "../components/Page";
+import Container from "../components/Container";
 
 interface StaticQueryProps {
   site: {
@@ -20,7 +23,7 @@ interface StaticQueryProps {
   };
 }
 
-const IndexLayout: React.FC = ({ children }) => (
+const IndexLayout: React.FC<{ title?: string }> = ({ title, children }) => (
   <StaticQuery
     query={graphql`
       query IndexLayoutQuery {
@@ -45,7 +48,12 @@ const IndexLayout: React.FC = ({ children }) => (
           ]}
         />
         <Header />
-        <LayoutMain>{children}</LayoutMain>
+        <SEO title={title ?? data.site.siteMetadata.title} />
+        <LayoutMain>
+          <Page>
+            <Container>{children}</Container>
+          </Page>
+        </LayoutMain>
         <Footer />
       </LayoutRoot>
     )}

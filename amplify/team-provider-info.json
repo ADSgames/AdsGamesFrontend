@@ -14,7 +14,8 @@
     "categories": {
       "function": {},
       "auth": {
-        "AdsGamesAuth": {}
+        "AdsGamesAuth": {},
+        "userPoolGroups": {}
       }
     }
   }

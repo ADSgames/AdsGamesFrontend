@@ -42,7 +42,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-create-client-paths",
       options: {
-        prefixes: ["/games/*", "/signup/*"],
+        prefixes: ["/games/*", "/members/*"],
       },
     },
   ],

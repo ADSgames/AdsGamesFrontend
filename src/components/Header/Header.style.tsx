@@ -1,7 +1,6 @@
 import { transparentize } from "polished";
 import { Link } from "gatsby";
-import styled from "styled-components";
-import type { DefaultTheme } from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 
 import Container from "../Container";
 
