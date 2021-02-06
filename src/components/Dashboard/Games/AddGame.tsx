@@ -10,7 +10,7 @@ import {
   ArrayHelpers,
 } from "formik";
 import { RouteComponentProps } from "@reach/router";
-import { DataStore, Storage } from "aws-amplify";
+import { Auth, DataStore, Storage } from "aws-amplify";
 import * as Yup from "yup";
 import { v1 } from "uuid";
 
@@ -56,7 +56,8 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
   const uploadFile = async (image: ImageParams, gameID: string) => {
     try {
       const id = `images/${v1()}`;
-      await Storage.put(id, image.file);
+
+      await Storage.put(id, image.file, { contentType: image.file.type });
 
       return await DataStore.save(
         new GameImage({
@@ -105,6 +106,9 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
     description: "",
     images: [],
   };
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  void Auth.currentAuthenticatedUser().then((creds) => console.log(creds));
 
   return (
     <IndexLayout title="Add Game">
