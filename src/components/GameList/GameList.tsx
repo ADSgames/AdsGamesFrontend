@@ -1,4 +1,5 @@
 import React from "react";
+import { RouteComponentProps } from "@reach/router";
 
 import Page from "../Page";
 import Container from "../Container";
@@ -12,7 +13,7 @@ import { useListQuery } from "../../hooks/useListQuery";
 
 import { Game } from "../../models";
 
-const GamesPage: React.FC<{ path?: string }> = () => {
+const GamesPage: React.FC<RouteComponentProps> = () => {
   const { loading, data } = useListQuery<Game>(Game);
 
   return (

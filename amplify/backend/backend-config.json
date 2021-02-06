@@ -22,7 +22,22 @@
     }
   },
   "auth": {
-    "adsgames": {
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "AdsGamesAuth",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ]
+        }
+      ]
+    },
+    "AdsGamesAuth": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -34,5 +49,6 @@
       "service": "S3",
       "providerPlugin": "awscloudformation"
     }
-  }
+  },
+  "function": {}
 }

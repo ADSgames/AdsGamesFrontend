@@ -12,19 +12,9 @@
       "AmplifyAppId": "d29qj45fzxhh3i"
     },
     "categories": {
-      "function": {
-        "AdsGamesAuthCustomMessage": {
-          "REDIRECTURL": "https://adsgames.net/",
-          "EMAILSUBJECT": "Confirm your account",
-          "EMAILMESSAGE": "Please follow the link below to confirm your account. "
-        },
-        "AdsGamesAuthPostConfirmation": {
-          "GROUP": "users"
-        }
-      },
+      "function": {},
       "auth": {
-        "AdsGamesAuth": {},
-        "adsgames": {}
+        "AdsGamesAuth": {}
       }
     }
   }

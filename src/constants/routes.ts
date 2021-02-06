@@ -6,3 +6,6 @@ export const LEARN = "/learn/";
 export const MEMBERS = "/members/";
 export const LINKS = "/links/";
 export const ABOUT = "/about/";
+export const SIGN_UP = "/signup/";
+export const SIGN_UP_CONFIRM = "/signup/confirm/";
+export const LOG_IN = "/login/";

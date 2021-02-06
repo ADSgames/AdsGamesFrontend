@@ -18,7 +18,16 @@ interface LoginParams {
   password: string;
 }
 
+interface LoginError {
+  message: string;
+  code: string;
+}
+
 const LoginPage: React.FC = () => {
+  const [canResend, setCanResend] = React.useState(false);
+  const [resendEmail, setResendEmail] = React.useState("");
+  const [resendSent, setResendSent] = React.useState(false);
+
   const signIn = async (
     params: LoginParams,
     helpers: FormikHelpers<LoginParams>
@@ -26,8 +35,20 @@ const LoginPage: React.FC = () => {
     try {
       await Auth.signIn(params.username, params.password);
     } catch (error: unknown) {
-      helpers.setErrors({ password: (error as Error).message });
+      setResendSent(false);
+      helpers.setErrors({ password: (error as LoginError).message });
+
+      if ((error as LoginError).code === "UserNotConfirmedException") {
+        setCanResend(true);
+        setResendEmail(params.username);
+      }
     }
+  };
+
+  const resendLink = async () => {
+    setCanResend(false);
+    await Auth.resendSignUp(resendEmail);
+    setResendSent(true);
   };
 
   return (
@@ -67,6 +88,12 @@ const LoginPage: React.FC = () => {
                 <Button type="submit">Login</Button>
               </Form>
             </Formik>
+            {canResend && (
+              <Button type="button" onClick={resendLink}>
+                Resend Link
+              </Button>
+            )}
+            {resendSent && <p>Link resent to email {resendEmail} </p>}
           </Card>
         </Container>
       </Page>

@@ -1,0 +1,68 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Parameters": {
+        "authAdsGamesAuthUserPoolId": {
+            "Type": "String",
+            "Default": "authAdsGamesAuthUserPoolId"
+        },
+        
+        "authAdsGamesAuthAppClientID": {
+            "Type": "String",
+            "Default": "authAdsGamesAuthAppClientID"
+        },
+        "authAdsGamesAuthAppClientIDWeb": {
+            "Type": "String",
+            "Default": "authAdsGamesAuthAppClientIDWeb"
+        },
+        "AuthRoleArn": {
+            "Type": "String"
+        },
+        "UnauthRoleArn": {
+            "Type": "String"
+        },
+        "env": {
+            "Type": "String"
+        }
+    },
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
+    },
+    "Resources": {
+    
+        "usersGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "users",
+              "Precedence" : 1,
+              
+              "UserPoolId" : {
+                "Ref": "authAdsGamesAuthUserPoolId"
+              } 
+            }
+        },
+        
+    
+        "adminsGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "admins",
+              "Precedence" : 2,
+              
+              "UserPoolId" : {
+                "Ref": "authAdsGamesAuthUserPoolId"
+              } 
+            }
+        },
+        
+    
+    
+    },
+    
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import { RouteComponentProps } from "@reach/router";
 
 import Page from "../Page";
 import Container from "../Container";
@@ -18,7 +19,7 @@ import { ContentLoader, LoadingSpinner } from "../Loaders";
 import { useItemQuery } from "../../hooks/useItemQuery";
 import { Game } from "../../models";
 
-const Player: React.FC<{ id?: string; path?: string }> = ({ id = "" }) => {
+const Player: React.FC<RouteComponentProps<{ id: string }>> = ({ id = "" }) => {
   const { loading, error, data } = useItemQuery<Game>(Game, id);
 
   return (
