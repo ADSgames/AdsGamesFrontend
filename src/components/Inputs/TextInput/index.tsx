@@ -1,18 +1,18 @@
 import * as React from "react";
+import InputError from "../InputError";
 import Label from "../Label";
 import { StyledInput } from "./Input.style";
 
 const TextInput: React.FC<
-  React.HTMLProps<HTMLInputElement> & { label: string }
-> = ({ label, disabled, required, onChange, value }) => (
+  React.InputHTMLAttributes<HTMLInputElement> & {
+    label: string;
+    error?: string;
+  }
+> = ({ label, ...props }) => (
   <>
     <Label>{label}</Label>
-    <StyledInput
-      value={value}
-      disabled={disabled}
-      required={required}
-      onChange={onChange}
-    />
+    <StyledInput {...props} />
+    <InputError error={props.error} />
   </>
 );
 

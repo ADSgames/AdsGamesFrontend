@@ -18,28 +18,28 @@ interface LoginParams {
   password: string;
 }
 
-const LoginPage: React.FC = () => {
-  const signIn = async (
+const SignUpPage: React.FC = () => {
+  const signUp = async (
     params: LoginParams,
     helpers: FormikHelpers<LoginParams>
   ) => {
     try {
-      await Auth.signIn(params.username, params.password);
-    } catch (error: unknown) {
+      await Auth.signUp({ ...params, attributes: { email: params.username } });
+    } catch (error) {
       helpers.setErrors({ password: (error as Error).message });
     }
   };
 
   return (
     <IndexLayout>
-      <SEO title="Sign In" />
+      <SEO title="Sign Up" />
       <Page>
         <Container>
-          <ContentHeader text="Sign In" />
+          <ContentHeader text="Create Account" />
           <Card padding={16}>
             <Formik
               initialValues={{ username: "", password: "" }}
-              onSubmit={signIn}
+              onSubmit={signUp}
             >
               <Form>
                 <Field name="username">
@@ -64,7 +64,7 @@ const LoginPage: React.FC = () => {
                     />
                   )}
                 </Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit">Sign Up</Button>
               </Form>
             </Formik>
           </Card>
@@ -74,4 +74,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

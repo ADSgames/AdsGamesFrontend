@@ -10,6 +10,22 @@
       "StackName": "amplify-adsgames-dev-221315",
       "StackId": "arn:aws:cloudformation:us-east-1:548375938465:stack/amplify-adsgames-dev-221315/17cb1a80-6760-11eb-a22c-0ea47a628cf7",
       "AmplifyAppId": "d29qj45fzxhh3i"
+    },
+    "categories": {
+      "function": {
+        "AdsGamesAuthCustomMessage": {
+          "REDIRECTURL": "https://adsgames.net/",
+          "EMAILSUBJECT": "Confirm your account",
+          "EMAILMESSAGE": "Please follow the link below to confirm your account. "
+        },
+        "AdsGamesAuthPostConfirmation": {
+          "GROUP": "users"
+        }
+      },
+      "auth": {
+        "AdsGamesAuth": {},
+        "adsgames": {}
+      }
     }
   }
 }
