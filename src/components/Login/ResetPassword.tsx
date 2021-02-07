@@ -8,8 +8,7 @@ import IndexLayout from "../../layouts";
 
 import ContentHeader from "../ContentHeader";
 import Card from "../Card";
-import TextInput from "../Inputs/TextInput";
-import Button from "../Inputs/Button";
+import { TextInput, Button } from "../Inputs";
 
 interface ResetParams {
   username: string;

@@ -1,7 +1,7 @@
 import React from "react";
 
 import Card from "../Card";
-import Button from "../Inputs/Button";
+import { Button } from "../Inputs";
 import { SourceContainer } from "./GameSource.style";
 
 const GameSource: React.FC<{ link?: string }> = ({ link = "" }) => {

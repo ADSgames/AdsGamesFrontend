@@ -7,8 +7,7 @@ import { navigate } from "gatsby";
 
 import ContentHeader from "../ContentHeader";
 import Card from "../Card";
-import TextInput from "../Inputs/TextInput";
-import Button from "../Inputs/Button";
+import { TextInput, Button } from "../Inputs";
 
 import * as ROUTES from "../../constants/routes";
 import IndexLayout from "../../layouts";

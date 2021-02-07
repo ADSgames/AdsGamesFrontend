@@ -7,7 +7,7 @@ import IndexLayout from "../../layouts";
 
 import ContentHeader from "../ContentHeader";
 import Card from "../Card";
-import Button from "../Inputs/Button";
+import { Button } from "../Inputs";
 
 import * as ROUTES from "../../constants/routes";
 

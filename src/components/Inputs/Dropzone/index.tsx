@@ -3,7 +3,7 @@ import Dropzone, { DropzoneProps } from "react-dropzone";
 
 import { DropzoneContainer } from "./Dropzone.style";
 
-const DropZone: React.FC<DropzoneProps> = (props) => (
+export const DropZone: React.FC<DropzoneProps> = (props) => (
   <Dropzone {...props}>
     {({ getRootProps, getInputProps, fileRejections }) => (
       <DropzoneContainer {...getRootProps()}>
@@ -18,5 +18,3 @@ const DropZone: React.FC<DropzoneProps> = (props) => (
     )}
   </Dropzone>
 );
-
-export default DropZone;

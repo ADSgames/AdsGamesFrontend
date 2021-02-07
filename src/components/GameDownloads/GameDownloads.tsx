@@ -2,7 +2,7 @@ import React from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 import Card from "../Card";
-import Button from "../Inputs/Button";
+import { Button } from "../Inputs";
 import { GameFile, GameFilePlatform } from "../../models";
 import { useListQuery } from "../../hooks/useListQuery";
 

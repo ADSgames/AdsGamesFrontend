@@ -44,8 +44,6 @@
     "@typescript-eslint/no-type-alias": 0,
     "@typescript-eslint/no-confusing-void-expression": 0,
     "@typescript-eslint/consistent-type-definitions": 0,
-    "@typescript-eslint/array-type": 0,
-    "@typescript-eslint/consistent-indexed-object-style": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/consistent-type-imports": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,

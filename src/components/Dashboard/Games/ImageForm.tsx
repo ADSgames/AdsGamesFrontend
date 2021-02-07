@@ -1,8 +1,7 @@
 import { Field, FieldProps } from "formik";
 import React from "react";
-import Button from "../../Inputs/Button";
 
-import TextInput from "../../Inputs/TextInput";
+import { TextInput, Button } from "../../Inputs";
 import { ImageParams } from "./AddGame";
 import { FieldContainer, FormContainer, ImageThumb } from "./ImageForm.style";
 

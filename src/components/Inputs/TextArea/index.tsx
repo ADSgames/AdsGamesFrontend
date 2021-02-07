@@ -1,19 +1,18 @@
 import * as React from "react";
-import Label from "../Label";
-import { StyledInput } from "./Input.style";
 
-const TextArea: React.FC<
-  React.HTMLProps<HTMLInputElement> & { label: string }
-> = ({ label, disabled, required, value, placeholder }) => (
+import { InputError } from "../InputError";
+import { InputLabel } from "../InputLabel";
+import { StyledInput } from "./TextArea.style";
+
+export const TextArea: React.FC<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    label: string;
+    error?: string;
+  }
+> = ({ label, error, ...props }) => (
   <>
-    <Label>{label}</Label>
-    <StyledInput
-      value={value}
-      disabled={disabled}
-      required={required}
-      placeholder={placeholder}
-    />
+    <InputLabel>{label}</InputLabel>
+    <StyledInput {...props} />
+    <InputError>{error}</InputError>
   </>
 );
-
-export default TextArea;

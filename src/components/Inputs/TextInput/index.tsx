@@ -1,19 +1,18 @@
 import * as React from "react";
-import InputError from "../InputError";
-import Label from "../Label";
-import { StyledInput } from "./Input.style";
 
-const TextInput: React.FC<
+import { InputError } from "../InputError";
+import { InputLabel } from "../InputLabel";
+import { StyledInput } from "./TextInput.style";
+
+export const TextInput: React.FC<
   React.InputHTMLAttributes<HTMLInputElement> & {
     label: string;
     error?: string;
   }
 > = ({ label, ...props }) => (
   <>
-    <Label>{label}</Label>
+    <InputLabel>{label}</InputLabel>
     <StyledInput {...props} />
     <InputError error={props.error} />
   </>
 );
-
-export default TextInput;

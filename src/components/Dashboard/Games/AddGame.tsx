@@ -18,11 +18,8 @@ import IndexLayout from "../../../layouts";
 
 import ContentHeader from "../../ContentHeader";
 import Card from "../../Card";
-import TextInput from "../../Inputs/TextInput";
-import Button from "../../Inputs/Button";
-import CheckBox from "../../Inputs/Checkbox";
+import { TextInput, Button, Checkbox, DropZone } from "../../Inputs";
 import { Game, GameImage, GameImageType } from "../../../models";
-import Dropzone from "../../Inputs/Dropzone";
 import ImageForm from "./ImageForm";
 
 const GameSchema = Yup.object({
@@ -156,12 +153,12 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
               </Field>
               <Field name="visible">
                 {({ field, meta }: FieldProps<string>) => (
-                  <CheckBox label="Visible" error={meta.error} {...field} />
+                  <Checkbox label="Visible" error={meta.error} {...field} />
                 )}
               </Field>
               <Field name="featured">
                 {({ field, meta }: FieldProps<string>) => (
-                  <CheckBox label="Featured" error={meta.error} {...field} />
+                  <Checkbox label="Featured" error={meta.error} {...field} />
                 )}
               </Field>
               <Field name="source">
@@ -176,7 +173,7 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
               <FieldArray name="images">
                 {(arrayHelpers: ArrayHelpers) => (
                   <>
-                    <Dropzone
+                    <DropZone
                       accept={["image/jpeg", "image/png"]}
                       maxSize={1000000}
                       onDrop={(files) =>

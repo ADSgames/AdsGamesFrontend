@@ -4,7 +4,7 @@ import ContentHeader from "../components/ContentHeader";
 import Card from "../components/Card";
 
 import IndexLayout from "../layouts";
-import LinkButton from "../components/Inputs/LinkButton";
+import { LinkButton } from "../components/Inputs";
 import {
   LinkIcon,
   LinkLayout,

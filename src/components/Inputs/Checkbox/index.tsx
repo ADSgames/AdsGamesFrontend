@@ -1,19 +1,17 @@
 import * as React from "react";
-import InputError from "../InputError";
-import Label from "../Label";
+import { InputError } from "../InputError";
+import { InputLabel } from "../InputLabel";
 import { StyledInput } from "./Checkbox.style";
 
-const Checkbox: React.FC<
+export const Checkbox: React.FC<
   React.InputHTMLAttributes<HTMLInputElement> & {
     label: string;
     error?: string;
   }
 > = ({ label, ...props }) => (
   <>
-    <Label>{label}</Label>
+    <InputLabel>{label}</InputLabel>
     <StyledInput type="checkbox" {...props} />
     <InputError error={props.error} />
   </>
 );
-
-export default Checkbox;

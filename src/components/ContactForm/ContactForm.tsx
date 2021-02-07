@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import TextInput from "../Inputs/TextInput";
-import TextArea from "../Inputs/TextArea";
-import Button from "../Inputs/Button";
+import { TextInput, TextArea, Button } from "../Inputs";
 import { Formik, Form } from "formik";
 
 const ContactForm: React.FC = () => (

@@ -6,7 +6,7 @@ import {
   StyledLinkButtonContainer,
 } from "./LinkButton.style";
 
-const LinkButton: React.FC<React.HTMLProps<HTMLButtonElement>> = ({
+export const LinkButton: React.FC<React.HTMLProps<HTMLButtonElement>> = ({
   onClick,
   disabled,
   children,
@@ -17,5 +17,3 @@ const LinkButton: React.FC<React.HTMLProps<HTMLButtonElement>> = ({
     </StyledLinkButton>
   </StyledLinkButtonContainer>
 );
-
-export default LinkButton;
