@@ -11,7 +11,7 @@ jobs:
         uses: deepakputhraya/action-branch-name@master
         with:
           regex: '([a-z])+\/([a-z])+'
-          allowed_prefixes: "feature,fix,hotfix,docs,release"
+          allowed_prefixes: "feature,fix,hotfix,docs,release,debt,copy"
           ignore: master,stage
           min_length: 5
           max_length: 30
