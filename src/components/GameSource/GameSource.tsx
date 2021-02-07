@@ -1,21 +1,18 @@
 import React from "react";
-import { GameFile } from "../../models";
 
 import Card from "../Card";
 import Button from "../Inputs/Button";
 import { SourceContainer } from "./GameSource.style";
 
-const GameSource: React.FC<{ files?: GameFile[] }> = ({ files }) => {
-  const source = files?.find((file) => file.platform === "SOURCE");
-
-  if (!source) {
+const GameSource: React.FC<{ link?: string }> = ({ link = "" }) => {
+  if (!link) {
     return null;
   }
 
   return (
     <Card title="Source">
       <SourceContainer>
-        <a href={source.url} target="_blank" rel="noreferrer">
+        <a href={link} target="_blank" rel="noreferrer">
           <Button icon={["fab", "github"]}>{"View Source"}</Button>
         </a>
       </SourceContainer>

@@ -10,7 +10,7 @@ import {
   ArrayHelpers,
 } from "formik";
 import { RouteComponentProps } from "@reach/router";
-import { Auth, DataStore, Storage } from "aws-amplify";
+import { DataStore, Storage } from "aws-amplify";
 import * as Yup from "yup";
 import { v1 } from "uuid";
 
@@ -43,6 +43,7 @@ const GameSchema = Yup.object({
       file: Yup.mixed<File>().required(),
     }).required()
   ),
+  source: Yup.string().url().required(),
 });
 
 type AddGameParams = Yup.InferType<typeof GameSchema>;
@@ -55,19 +56,27 @@ export interface ImageParams {
 const AddGamePage: React.FC<RouteComponentProps> = () => {
   const uploadFile = async (image: ImageParams, gameID: string) => {
     try {
-      const id = `images/${v1()}`;
+      const id = `games/images/${v1()}`;
 
-      await Storage.put(id, image.file, { contentType: image.file.type });
+      await Storage.put(id, image.file, {
+        contentType: image.file.type,
+        level: "public",
+      });
 
-      return await DataStore.save(
-        new GameImage({
-          gameID,
-          type: image.type,
-          url: id,
-        })
-      );
+      const url = await Storage.get(id);
+
+      if (typeof url === "string") {
+        await DataStore.save(
+          new GameImage({
+            gameID,
+            type: image.type,
+            url,
+          })
+        );
+      }
     } catch (error) {
-      return null;
+      // eslint-disable-next-line no-console
+      console.log(error);
     }
   };
 
@@ -84,6 +93,10 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
           featured: params.featured,
           slug: params.slug,
           visible: params.visible,
+          source: params.source,
+          images: [],
+          controls: [],
+          files: [],
         })
       );
 
@@ -104,11 +117,9 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
     visible: false,
     featured: false,
     description: "",
+    source: "",
     images: [],
   };
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  void Auth.currentAuthenticatedUser().then((creds) => console.log(creds));
 
   return (
     <IndexLayout title="Add Game">
@@ -151,6 +162,11 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
               <Field name="featured">
                 {({ field, meta }: FieldProps<string>) => (
                   <CheckBox label="Featured" error={meta.error} {...field} />
+                )}
+              </Field>
+              <Field name="source">
+                {({ field, meta }: FieldProps<string>) => (
+                  <TextInput label="Source" error={meta.error} {...field} />
                 )}
               </Field>
 

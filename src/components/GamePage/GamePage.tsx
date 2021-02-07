@@ -30,14 +30,14 @@ const Player: React.FC<RouteComponentProps<{ id: string }>> = ({ id = "" }) => {
             <>
               <ContentHeader text={data.name} />
 
-              <GameBanner images={data.images} />
-              <HtmlPlayer files={data.files} />
-              <GameControls controls={data.controls} />
+              <GameBanner gameID={id} />
+              <HtmlPlayer gameID={id} />
+              <GameControls gameID={id} />
               <Card title="About">
                 <LinkDescription>{data.description}</LinkDescription>
               </Card>
-              <GameDownloads files={data.files} />
-              <GameSource files={data.files} />
+              <GameDownloads gameID={id} />
+              <GameSource link={data.source} />
             </>
           )}
         </ContentLoader>

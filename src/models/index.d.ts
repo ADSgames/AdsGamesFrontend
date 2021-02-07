@@ -4,8 +4,7 @@ export enum GameFilePlatform {
   WINDOWS = "WINDOWS",
   LINUX = "LINUX",
   MAC = "MAC",
-  WEB = "WEB",
-  SOURCE = "SOURCE"
+  WEB = "WEB"
 }
 
 export enum GameImageType {
@@ -52,7 +51,8 @@ export declare class Game {
   readonly files?: GameFile[];
   readonly images?: GameImage[];
   readonly featured: boolean;
-  readonly description?: string;
+  readonly description: string;
+  readonly source?: string;
   constructor(init: ModelInit<Game>);
   static copyOf(source: Game, mutator: (draft: MutableModel<Game>) => MutableModel<Game> | void): Game;
 }

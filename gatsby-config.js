@@ -26,18 +26,8 @@ module.exports = {
         description: "A.D.S. Games website",
       },
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "images",
-        path: `${__dirname}/src/images`,
-      },
-    },
-    "gatsby-transformer-json",
     "gatsby-plugin-typescript",
     "gatsby-plugin-typescript-checker",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-create-client-paths",

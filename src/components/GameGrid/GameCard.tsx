@@ -6,6 +6,7 @@ import defaultImage from "../../images/game.png";
 
 import * as ROUTES from "../../constants/routes";
 import { GameImage } from "../../models";
+import { useListQuery } from "../../hooks/useListQuery";
 
 export interface GameCardProps {
   title: string;
@@ -13,8 +14,13 @@ export interface GameCardProps {
   id: string;
 }
 
-const GameCard: React.FC<GameCardProps> = ({ title, images, id }) => {
-  const image = images?.find((i) => i.type === "THUMBNAIL");
+const GameCard: React.FC<GameCardProps> = ({ title, id }) => {
+  const { data: images } = useListQuery<GameImage>(GameImage, (c) =>
+    c.gameID("eq", id)
+  );
+
+  const image = images.find((i) => i.type === "THUMBNAIL");
+
   return (
     <StyledGameCard>
       <Link to={`${ROUTES.GAMES}${id}`}>

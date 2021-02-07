@@ -6,10 +6,13 @@ import { CONTROLS } from "../../constants/controls";
 
 import { ControlImage, ControlItem, ControlText } from "./GameControls.style";
 import { Control } from "../../models";
+import { useListQuery } from "../../hooks/useListQuery";
 
-const GameControls: React.FC<{ controls?: Control[] }> = ({
-  controls = [],
-}) => {
+const GameControls: React.FC<{ gameID: string }> = ({ gameID }) => {
+  const { data: controls } = useListQuery<Control>(Control, (c) =>
+    c.gameID("eq", gameID)
+  );
+
   if (!controls.length) {
     return null;
   }

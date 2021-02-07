@@ -14,9 +14,11 @@ const MembersPage: React.FC<RouteComponentProps> = () => {
   React.useEffect(() => {
     const checkLogged = async () => {
       try {
-        const session = await Auth.currentSession();
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const session = await Auth.currentAuthenticatedUser();
 
-        if (session.isValid()) {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        if (session) {
           void navigate(ROUTES.DASHBOARD);
         } else {
           void navigate(ROUTES.LOG_IN);

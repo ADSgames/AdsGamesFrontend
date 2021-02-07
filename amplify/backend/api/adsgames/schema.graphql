@@ -1,7 +1,16 @@
 type Control
   @model
   @key(name: "byGame", fields: ["gameID"])
-  @auth(rules: [{ allow: public, operations: [read] }]) {
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      {
+        allow: groups
+        groups: ["admins"]
+        operations: [create, delete, update, read]
+      }
+    ]
+  ) {
   id: ID!
   type: String!
   description: String!
@@ -13,13 +22,21 @@ enum GameFilePlatform {
   LINUX
   MAC
   WEB
-  SOURCE
 }
 
 type GameFile
   @model
   @key(name: "byGame", fields: ["gameID"])
-  @auth(rules: [{ allow: public, operations: [read] }]) {
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      {
+        allow: groups
+        groups: ["admins"]
+        operations: [create, delete, update, read]
+      }
+    ]
+  ) {
   id: ID!
   url: String!
   platform: GameFilePlatform!
@@ -35,14 +52,34 @@ enum GameImageType {
 type GameImage
   @model
   @key(name: "byGame", fields: ["gameID"])
-  @auth(rules: [{ allow: public, operations: [read] }]) {
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      {
+        allow: groups
+        groups: ["admins"]
+        operations: [create, delete, update, read]
+      }
+    ]
+  ) {
   id: ID!
   url: String!
   type: GameImageType!
   gameID: ID!
 }
 
-type Game @model @auth(rules: [{ allow: public, operations: [read] }]) {
+type Game
+  @model
+  @auth(
+    rules: [
+      { allow: public, provider: iam, operations: [read] }
+      {
+        allow: groups
+        groups: ["admins"]
+        operations: [create, delete, update, read]
+      }
+    ]
+  ) {
   id: ID!
   slug: String!
   name: String!
@@ -51,5 +88,6 @@ type Game @model @auth(rules: [{ allow: public, operations: [read] }]) {
   files: [GameFile!] @connection(keyName: "byGame", fields: ["id"])
   images: [GameImage!] @connection(keyName: "byGame", fields: ["id"])
   featured: Boolean!
-  description: String
+  description: String!
+  source: String
 }

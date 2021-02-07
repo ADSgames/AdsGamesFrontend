@@ -54,7 +54,22 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "provider": "iam",
                                 "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admins"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update",
                                     "read"
                                 ]
                             }
@@ -119,7 +134,22 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "provider": "iam",
                                 "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admins"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update",
                                     "read"
                                 ]
                             }
@@ -184,7 +214,22 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "provider": "iam",
                                 "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admins"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update",
                                     "read"
                                 ]
                             }
@@ -277,6 +322,13 @@ export const schema = {
                     "name": "description",
                     "isArray": false,
                     "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "source": {
+                    "name": "source",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 }
@@ -294,7 +346,22 @@ export const schema = {
                         "rules": [
                             {
                                 "allow": "public",
+                                "provider": "iam",
                                 "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "groupClaim": "cognito:groups",
+                                "provider": "userPools",
+                                "allow": "groups",
+                                "groups": [
+                                    "admins"
+                                ],
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update",
                                     "read"
                                 ]
                             }
@@ -311,8 +378,7 @@ export const schema = {
                 "WINDOWS",
                 "LINUX",
                 "MAC",
-                "WEB",
-                "SOURCE"
+                "WEB"
             ]
         },
         "GameImageType": {
@@ -325,5 +391,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "24f441c8b8462e49f1f6e3e5a59e1333"
+    "version": "d38b6a469a79ddcb173da66441f96fde"
 };

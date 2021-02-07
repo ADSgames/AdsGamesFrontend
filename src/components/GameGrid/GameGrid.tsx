@@ -9,12 +9,7 @@ const GameGrid: React.FC<{
 }> = ({ games }) => (
   <StyledGameGrid>
     {games.map((game) => (
-      <GameCard
-        key={game.id}
-        title={game.name}
-        images={game.images}
-        id={game.id}
-      />
+      <GameCard key={game.id} title={game.name} id={game.id} />
     ))}
   </StyledGameGrid>
 );

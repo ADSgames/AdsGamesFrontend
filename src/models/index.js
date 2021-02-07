@@ -6,8 +6,7 @@ const GameFilePlatform = {
   "WINDOWS": "WINDOWS",
   "LINUX": "LINUX",
   "MAC": "MAC",
-  "WEB": "WEB",
-  "SOURCE": "SOURCE"
+  "WEB": "WEB"
 };
 
 const GameImageType = {
