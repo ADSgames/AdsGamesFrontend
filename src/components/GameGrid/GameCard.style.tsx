@@ -1,6 +1,7 @@
+import { S3Image } from "aws-amplify-react";
 import styled from "styled-components";
 
-export const Image = styled.img`
+export const Image = styled(S3Image)`
   width: 100%;
   height: 100%;
 `;
@@ -12,6 +13,7 @@ export const Overlay = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  right: 0;
   width: 100%;
 
   transition: opacity 0.25s cubic-bezier(0, 0, 0.07, 0.63);
@@ -29,7 +31,7 @@ export const OverlayText = styled.p`
 
 export const StyledGameCard = styled.div`
   position: relative;
-
+  height: 100%;
   &:hover {
     box-shadow: 0 0 2px 3px rgba(0, 0, 0, 0.2);
     z-index: 1;

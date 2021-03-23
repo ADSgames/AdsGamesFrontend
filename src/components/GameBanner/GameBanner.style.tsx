@@ -1,9 +1,7 @@
+import { S3Image } from "aws-amplify-react";
 import styled from "styled-components";
 
-export const BannerBig = styled.div<{ image: string }>`
+export const BannerBig = styled(S3Image)`
   width: 100%;
   height: 400px;
-  background: url(${(props): string => props.image});
-  background-size: cover;
-  background-repeat: none;
 `;

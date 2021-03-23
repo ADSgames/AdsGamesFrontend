@@ -1,3 +1,4 @@
+import { S3Image } from "aws-amplify-react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 
@@ -11,7 +12,7 @@ export const SlideContainer = styled(Link)`
   color: #fff;
 `;
 
-export const SlideImage = styled.img`
+export const SlideImage = styled(S3Image)`
   width: 100%;
   height: 100%;
 `;

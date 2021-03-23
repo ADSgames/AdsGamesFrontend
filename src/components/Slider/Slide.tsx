@@ -24,7 +24,7 @@ export const Slide: React.FC<{
 
   return (
     <SlideContainer to={`${ROUTES.GAMES}${id}`}>
-      <SlideImage src={image} />
+      <SlideImage imgKey={image} />
       <ToolTip>
         <ToolTipHead>{title}</ToolTipHead>
         <ToolTipBody>{description}</ToolTipBody>
