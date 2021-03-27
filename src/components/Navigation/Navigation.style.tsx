@@ -13,7 +13,6 @@ export const NavContainer = styled.nav<{ theme: DefaultTheme }>`
   display: flex;
   justify-content: center;
   overflow: hidden;
-  z-index: 1000;
 
   transition: height 0.1s ease-in;
 

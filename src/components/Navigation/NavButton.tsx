@@ -11,6 +11,7 @@ export interface NavButtonProps {
   icon: string;
   hoverIcon: string;
   route: string;
+  hidden: boolean;
 }
 
 const NavButton: React.FC<NavButtonProps> = ({

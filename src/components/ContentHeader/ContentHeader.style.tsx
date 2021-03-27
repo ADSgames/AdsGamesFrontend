@@ -10,6 +10,7 @@ export const StyledContentHeader = styled.h1<{ sticky: boolean }>`
   margin: 0;
   text-align: center;
   text-shadow: 0 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 1px 0 rgba(0, 0, 0, 0.3);
   ${(props: { sticky: boolean }): string =>
     props.sticky ? "top: 50px;z-index: 10;position:sticky;" : ""}
 `;

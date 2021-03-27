@@ -4,7 +4,7 @@ import { FormikHelpers } from "formik";
 import { RouteComponentProps } from "@reach/router";
 import { DataStore, Storage } from "aws-amplify";
 import { v1 } from "uuid";
-import { MenuItem, Select } from "@material-ui/core";
+import { MenuItem, Select, Typography } from "@material-ui/core";
 
 import IndexLayout from "../../../layouts";
 import ContentHeader from "../../ContentHeader";
@@ -20,6 +20,7 @@ export interface ImageParams {
 
 const EditGamePage: React.FC<RouteComponentProps> = () => {
   const { data } = useListQuery<Game>(Game);
+  console.log(data);
 
   const [selectedGame, setSelectedGame] = React.useState<Game | null>(null);
 
@@ -66,6 +67,8 @@ const EditGamePage: React.FC<RouteComponentProps> = () => {
           params.images.map(async (image) => uploadFile(image, game.id))
         );
       }
+
+      setSelectedGame(null);
     } catch (error) {
       helpers.setErrors({ featured: (error as Error).message });
     }
@@ -77,17 +80,16 @@ const EditGamePage: React.FC<RouteComponentProps> = () => {
     }>
   ) => {
     const game = data.find((g) => g.id === event.target.value);
-
-    if (game) {
-      setSelectedGame(game);
-    }
+    setSelectedGame(game ?? null);
   };
 
   return (
     <IndexLayout title="Edit Game">
       <ContentHeader text="Edit Game" />
       <Card padding={16}>
-        <Select onChange={handleChange}>
+        <Typography variant="h5">Select a Game</Typography>
+        <Select onChange={handleChange} value={selectedGame?.id ?? ""}>
+          <MenuItem disabled>Select a game</MenuItem>
           {data.map((game) => (
             <MenuItem key={game.id} value={game.id}>
               {game.name}

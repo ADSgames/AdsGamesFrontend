@@ -69,7 +69,7 @@ export const GameForm: React.FC<
     validationSchema={GameSchema}
     validateOnChange={false}
   >
-    {({ values }) => (
+    {({ values, isSubmitting }) => (
       <Form>
         <Typography variant="h5">Basic Information</Typography>
         <Field name="name">
@@ -117,17 +117,19 @@ export const GameForm: React.FC<
           )}
         </Field>
         <Field name="visible">
-          {({ field }: FieldProps<string>) => (
+          {({ field, meta }: FieldProps<boolean>) => (
             <FormControlLabel
               control={<Checkbox {...field} />}
+              checked={meta.value}
               label="Visible"
             />
           )}
         </Field>
         <Field name="featured">
-          {({ field }: FieldProps<string>) => (
+          {({ field, meta }: FieldProps<boolean>) => (
             <FormControlLabel
               control={<Checkbox {...field} />}
+              checked={meta.value}
               label="Featured"
             />
           )}
@@ -161,7 +163,7 @@ export const GameForm: React.FC<
           )}
         </FieldArray>
 
-        <Button type="submit" variant="outlined">
+        <Button type="submit" variant="outlined" disabled={isSubmitting}>
           Submit
         </Button>
       </Form>

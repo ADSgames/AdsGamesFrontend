@@ -12,56 +12,66 @@ export const navLinks: NavButtonProps[] = [
     icon: ICONS.home,
     hoverIcon: ICONS.homeHover,
     route: ROUTES.HOME,
+    hidden: false,
   },
   {
     text: "Games",
     icon: ICONS.games,
     hoverIcon: ICONS.gamesHover,
     route: ROUTES.GAMES,
+    hidden: false,
   },
   {
     text: "Contact",
     icon: ICONS.contact,
     hoverIcon: ICONS.contactHover,
     route: ROUTES.CONTACT,
+    hidden: false,
   },
   {
     text: "Assets",
     icon: ICONS.assets,
     hoverIcon: ICONS.assetsHover,
     route: ROUTES.ASSETS,
+    hidden: true,
   },
   {
     text: "Learn",
     icon: ICONS.learn,
     hoverIcon: ICONS.learnHover,
     route: ROUTES.LEARN,
-  },
-  {
-    text: "Members",
-    icon: ICONS.members,
-    hoverIcon: ICONS.membersHover,
-    route: ROUTES.MEMBERS,
+    hidden: true,
   },
   {
     text: "Links",
     icon: ICONS.links,
     hoverIcon: ICONS.linksHover,
     route: ROUTES.LINKS,
+    hidden: true,
   },
   {
     text: "About",
     icon: ICONS.about,
     hoverIcon: ICONS.aboutHover,
     route: ROUTES.ABOUT,
+    hidden: false,
+  },
+  {
+    text: "Login",
+    icon: ICONS.members,
+    hoverIcon: ICONS.membersHover,
+    route: ROUTES.MEMBERS,
+    hidden: false,
   },
 ];
 
 const Navigation: React.FC = () => (
   <NavContainer>
-    {navLinks.map((link) => (
-      <NavButton key={link.text} {...link} />
-    ))}
+    {navLinks
+      .filter((link) => !link.hidden)
+      .map((link) => (
+        <NavButton key={link.text} {...link} />
+      ))}
   </NavContainer>
 );
 

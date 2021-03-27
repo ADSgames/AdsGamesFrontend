@@ -2,13 +2,14 @@ import { darken } from "polished";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<{ fullWidth: boolean }>`
+  color: #34495e;
+  text-decoration: none;
   display: flex;
   align-items: center;
   min-height: 30px;
-  min-width: 30px;
+  min-width: ${({ fullWidth }): string => (fullWidth ? "100%" : "30px")};
   background-color: ${(props): string => props.theme.colors.ui.input};
-  text-align: center;
   font-weight: 600;
   font-size: ${(props): number => props.theme.dimensions.fontSize.regular}px;
   margin: 10px 0;
@@ -38,13 +39,14 @@ export const StyledButton = styled.button`
 `;
 
 export const ButtonText = styled.p`
-  color: black;
   text-align: center;
   vertical-align: text-top;
-  font-size: 24px;
+  font-size: 20px;
   margin: 0;
   padding: 3px;
   text-decoration: none;
+  font-weight: 700;
+  width: 100%;
 `;
 
 export const ButtonIcon = styled(FontAwesomeIcon)`
