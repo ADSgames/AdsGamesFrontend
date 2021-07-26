@@ -18,10 +18,12 @@ export const NavButtonStyle = styled(Link)`
 
 export const NavButtonText = styled.div`
   color: #ffffff;
-  font-size: 15px;
+  font-size: 7px;
   text-align: center;
   font-family: "Press Start 2P", sans-serif;
+  text-transform: uppercase;
   padding: 0;
+  margin-top: 5px;
 `;
 
 export const NavButtonIcon = styled.img`

@@ -21,6 +21,10 @@ const DashboardPage: React.FC<RouteComponentProps> = () => {
     void navigate(ROUTES.ADD_GAME);
   };
 
+  const gotoEditGame = () => {
+    void navigate(ROUTES.EDIT_GAME);
+  };
+
   return (
     <IndexLayout title="Dashboard">
       <ContentHeader text="Dashboard" />
@@ -28,6 +32,7 @@ const DashboardPage: React.FC<RouteComponentProps> = () => {
         Welcome!
         <Button onClick={logout}>Logout</Button>
         <Button onClick={gotoAddGame}>Add Game</Button>
+        <Button onClick={gotoEditGame}>Edit Game</Button>
       </Card>
     </IndexLayout>
   );

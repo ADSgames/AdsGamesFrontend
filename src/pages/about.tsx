@@ -58,7 +58,7 @@ const staff = [
 
 const AboutPage: React.FC = () => (
   <IndexLayout title="About">
-    <ContentHeader text="About A.D.S. Games" />
+    <ContentHeader text="About A.D.S. Games" sticky />
     <Card>
       <LinkDescription>
         A.D.S. (Allan and Daniel Software) Games was founded on the 21st of

@@ -11,6 +11,7 @@ import MembersPage from "../components/Login/Members";
 import ForgotPassword from "../components/Login/ForgotPassword";
 import ResetPassword from "../components/Login/ResetPassword";
 import AddGamePage from "../components/Dashboard/Games/AddGame";
+import EditGamePage from "../components/Dashboard/Games/EditGame";
 
 const MembersRouter: React.FC = () => (
   <Router>
@@ -22,6 +23,7 @@ const MembersRouter: React.FC = () => (
     <ForgotPassword path={ROUTES.FORGOT_PASSWORD} />
     <ResetPassword path={ROUTES.RESET_PASSWORD} />
     <AddGamePage path={ROUTES.ADD_GAME} />
+    <EditGamePage path={ROUTES.EDIT_GAME} />
   </Router>
 );
 

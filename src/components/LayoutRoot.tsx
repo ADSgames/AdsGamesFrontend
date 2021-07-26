@@ -7,6 +7,7 @@ import {
   faApple,
   faLinux,
 } from "@fortawesome/free-brands-svg-icons";
+import "@fontsource/press-start-2p";
 
 import { Normalize } from "../styles/normalize";
 

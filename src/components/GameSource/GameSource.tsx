@@ -13,7 +13,9 @@ const GameSource: React.FC<{ link?: string }> = ({ link = "" }) => {
     <Card title="Source">
       <SourceContainer>
         <a href={link} target="_blank" rel="noreferrer">
-          <Button icon={["fab", "github"]}>{"View Source"}</Button>
+          <Button fullWidth icon={["fab", "github"]}>
+            {"View Source"}
+          </Button>
         </a>
       </SourceContainer>
     </Card>

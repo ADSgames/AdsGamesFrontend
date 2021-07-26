@@ -19,6 +19,7 @@ export const Logo = styled.div`
   height: 80px;
   width: 380px;
   image-rendering: optimizeSpeed;
+  margin-top: 20px;
 `;
 
 export const HeaderInner = styled(Container)`

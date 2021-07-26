@@ -24,12 +24,7 @@ const GameCard: React.FC<GameCardProps> = ({ title, id }) => {
   return (
     <StyledGameCard>
       <Link to={`${ROUTES.GAMES}${id}`}>
-        <Image
-          width="300"
-          height="225"
-          src={image?.url ?? defaultImage}
-          alt={title}
-        />
+        <Image imgKey={image?.url ?? defaultImage} />
         <Overlay>
           <OverlayText>{title}</OverlayText>
         </Overlay>

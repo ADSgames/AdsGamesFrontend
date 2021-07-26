@@ -13,3 +13,4 @@ export const DASHBOARD = "/members/dashboard/";
 export const FORGOT_PASSWORD = "/members/forgot-password/";
 export const RESET_PASSWORD = "/members/reset-password/";
 export const ADD_GAME = "/members/dashboard/add-game/";
+export const EDIT_GAME = "/members/dashboard/edit-game/";

@@ -1,49 +1,16 @@
 /* eslint-disable max-lines-per-function */
 import React from "react";
-import {
-  Form,
-  Formik,
-  Field,
-  FieldProps,
-  FormikHelpers,
-  FieldArray,
-  ArrayHelpers,
-} from "formik";
+import { FormikHelpers } from "formik";
 import { RouteComponentProps } from "@reach/router";
 import { DataStore, Storage } from "aws-amplify";
-import * as Yup from "yup";
 import { v1 } from "uuid";
 
 import IndexLayout from "../../../layouts";
 
 import ContentHeader from "../../ContentHeader";
 import Card from "../../Card";
-import { TextInput, Button, Checkbox, DropZone } from "../../Inputs";
 import { Game, GameImage, GameImageType } from "../../../models";
-import ImageForm from "./ImageForm";
-
-const GameSchema = Yup.object({
-  slug: Yup.string()
-    .min(4)
-    .max(30)
-    .matches(/^[a-z-]*$/u, "Must be only lowercase with dashes")
-    .required(),
-  name: Yup.string().min(4).max(30).required(),
-  visible: Yup.boolean().required(),
-  featured: Yup.boolean().required(),
-  description: Yup.string().min(10).max(1000).required(),
-  images: Yup.array().of(
-    Yup.object({
-      type: Yup.mixed<GameImageType>()
-        .oneOf(Object.values(GameImageType))
-        .required(),
-      file: Yup.mixed<File>().required(),
-    }).required()
-  ),
-  source: Yup.string().url().required(),
-});
-
-type AddGameParams = Yup.InferType<typeof GameSchema>;
+import { GameForm, GameParams } from "./GameForm";
 
 export interface ImageParams {
   type: GameImageType;
@@ -52,34 +19,24 @@ export interface ImageParams {
 
 const AddGamePage: React.FC<RouteComponentProps> = () => {
   const uploadFile = async (image: ImageParams, gameID: string) => {
-    try {
-      const id = `games/images/${v1()}`;
+    const id = `games/images/${v1()}`;
 
-      await Storage.put(id, image.file, {
-        contentType: image.file.type,
-        level: "public",
-      });
+    await Storage.put(id, image.file, {
+      contentType: image.file.type,
+    });
 
-      const url = await Storage.get(id);
-
-      if (typeof url === "string") {
-        await DataStore.save(
-          new GameImage({
-            gameID,
-            type: image.type,
-            url,
-          })
-        );
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
+    await DataStore.save(
+      new GameImage({
+        gameID,
+        type: image.type,
+        url: id,
+      })
+    );
   };
 
   const addGame = async (
-    params: AddGameParams,
-    helpers: FormikHelpers<AddGameParams>
+    params: GameParams,
+    helpers: FormikHelpers<GameParams>
   ) => {
     try {
       // Create game
@@ -108,99 +65,11 @@ const AddGamePage: React.FC<RouteComponentProps> = () => {
     }
   };
 
-  const initialValues: AddGameParams = {
-    slug: "",
-    name: "",
-    visible: false,
-    featured: false,
-    description: "",
-    source: "",
-    images: [],
-  };
-
   return (
     <IndexLayout title="Add Game">
       <ContentHeader text="Add Game" />
       <Card padding={16}>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={addGame}
-          validationSchema={GameSchema}
-          validateOnChange={false}
-        >
-          {({ values }) => (
-            <Form>
-              <h3>Basic Information</h3>
-              <hr />
-              <Field name="name">
-                {({ field, meta }: FieldProps<string>) => (
-                  <TextInput label="Name" error={meta.error} {...field} />
-                )}
-              </Field>
-              <Field name="slug">
-                {({ field, meta }: FieldProps<string>) => (
-                  <TextInput label="Slug" error={meta.error} {...field} />
-                )}
-              </Field>
-              <Field name="description">
-                {({ field, meta }: FieldProps<string>) => (
-                  <TextInput
-                    label="Description"
-                    error={meta.error}
-                    {...field}
-                  />
-                )}
-              </Field>
-              <Field name="visible">
-                {({ field, meta }: FieldProps<string>) => (
-                  <Checkbox label="Visible" error={meta.error} {...field} />
-                )}
-              </Field>
-              <Field name="featured">
-                {({ field, meta }: FieldProps<string>) => (
-                  <Checkbox label="Featured" error={meta.error} {...field} />
-                )}
-              </Field>
-              <Field name="source">
-                {({ field, meta }: FieldProps<string>) => (
-                  <TextInput label="Source" error={meta.error} {...field} />
-                )}
-              </Field>
-
-              <h3>Images</h3>
-              <hr />
-
-              <FieldArray name="images">
-                {(arrayHelpers: ArrayHelpers) => (
-                  <>
-                    <DropZone
-                      accept={["image/jpeg", "image/png"]}
-                      maxSize={1000000}
-                      onDrop={(files) =>
-                        files.forEach((file) =>
-                          arrayHelpers.push({
-                            type: "",
-                            file,
-                          })
-                        )
-                      }
-                    />
-                    {values.images?.map((image, index) => (
-                      <ImageForm
-                        key={index}
-                        image={image}
-                        index={index}
-                        onRemove={(i) => arrayHelpers.remove(i)}
-                      />
-                    ))}
-                  </>
-                )}
-              </FieldArray>
-
-              <Button type="submit">Add Game</Button>
-            </Form>
-          )}
-        </Formik>
+        <GameForm onSubmit={addGame} />
       </Card>
     </IndexLayout>
   );

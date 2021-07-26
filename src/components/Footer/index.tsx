@@ -4,7 +4,7 @@ import { StyledFooter, FooterIcons, FooterText } from "./Footer.style";
 
 const Footer: React.FC = () => (
   <StyledFooter>
-    <FooterText>Copyright © 2020 A.D.S. Games </FooterText>
+    <FooterText>Copyright © {new Date().getFullYear()} A.D.S. Games</FooterText>
     <FooterIcons />
   </StyledFooter>
 );

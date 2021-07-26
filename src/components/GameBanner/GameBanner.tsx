@@ -18,7 +18,7 @@ const GameBanner: React.FC<{ gameID: string }> = ({ gameID }) => {
 
   return (
     <Card>
-      <BannerBig image={largeImage.url} />
+      <BannerBig imgKey={largeImage.url} />
     </Card>
   );
 };

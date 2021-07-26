@@ -4,7 +4,7 @@ import ContentHeader from "../components/ContentHeader";
 import Card from "../components/Card";
 
 import IndexLayout from "../layouts";
-import { LinkButton } from "../components/Inputs";
+import { Button } from "../components/Inputs";
 import {
   LinkIcon,
   LinkLayout,
@@ -138,9 +138,13 @@ const LinksPage: React.FC = () => (
             {text}
             <br />
             {extLinks.map((link) => (
-              <LinkButton key={link.text}>
-                <a href={link.location}>{link.text}</a>
-              </LinkButton>
+              <a
+                key={link.text}
+                href={link.location}
+                style={{ textDecoration: "none" }}
+              >
+                <Button fullWidth>{link.text}</Button>
+              </a>
             ))}
           </LinkDescription>
           <LinkIcon color={iconBgColor} title={title} image={image} />
